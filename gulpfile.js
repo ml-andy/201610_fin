@@ -57,6 +57,12 @@ gulp.task('uploadHTML', function () {
 		.pipe(gulp.dest('dist'))
 		.pipe($.connect.reload());
 });
+gulp.task('libjs', function () {
+	gulp.src('src/lib/*.js')
+		.pipe($.changed('dist/lib'))
+		.pipe(gulp.dest('dist/lib'))
+		.pipe($.connect.reload());
+});
 gulp.task('uploadphp', function () {
 	gulp.src('src/*.php')
 		.pipe($.changed('dist'))
@@ -71,6 +77,7 @@ gulp.task('del',function(){
 gulp.task('default',['connect'], function() {
 	gulp.watch(['src/css/*.scss'],['sass']);
 	gulp.watch(['src/js/**/*.js'],['js']);
+	gulp.watch(['src/lib/**/*.js'],['libjs']);
 	gulp.watch(['src/images/*.jpg'],['imageminJPG']);
 	gulp.watch(['src/images/*.png'],['imageminPNG']);
 	gulp.watch(['src/*.html'],['uploadHTML']);

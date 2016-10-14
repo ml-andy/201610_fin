@@ -10,7 +10,7 @@
 <meta name="keywords" content="關鍵字"/>
 <meta property="og:title" content="標題"/>
 <meta property="og:type" content="website"/>    
-<!-- <meta property="og:image" content="images/fbsc.jpg"/> -->
+ <meta property="og:image" content="images/fbsc.jpg"/> 
 <meta property="og:site_name" content="標題"/>
 <meta property="og:description" content="說明"/>
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
@@ -19,13 +19,39 @@
 <!--css-->
 <link rel="stylesheet" href="css/common.css"/>
 <!--js-->
-<!-- <script type="text/javascript" src="//connect.facebook.net/zh_TW/all.js"></script> -->
-<!--<script src="js/ga.js"></script>-->
+<script type="text/javascript" src="//connect.facebook.net/zh_TW/all.js"></script>
+<script src="lib/device.min.js"></script>
 <script src="js/app.js"></script>
 </head>
 <body>
+  <div class="head">
+    <div class="logo"></div>
+    <div class="menubtn"></div>
+  </div>
+  <div class="menu">
+    <div class="menua_box">
+      <a href="javascript:;" class="menua m1">登入/出帳號</a>
+      <a href="javascript:;" class="menua m2">查詢紀錄</a>
+      <a href="javascript:;" class="menua m3">活動辦法</a>
+      <a href="javascript:;" class="menua m4">獎項介紹</a>
+      <a href="javascript:;" class="menua m5">得獎名單</a>
+      <a href="javascript:;" class="menua m6">FB分享</a>
+      <a href="javascript:;" class="menua m7">玩遊戲</a>
+      <a href="javascript:;" class="menua m8">登錄序號</a>
+      <a href="javascript:;" class="menua m9">回首頁</a>
+    </div>
+  </div>
   <div class="wrapper">
-     
+     <div class="page index">
+       <div class="title"></div>
+       <div class="waterchild"></div>
+       <div class="banner_box">
+         <div class="banner" style="background-image:url(images/index_banner1.png);"></div>
+         <div class="banner" style="background-image:url(images/index_banner2.png);"></div>
+       </div>
+       <div class="gamePlay_btn"></div>
+       <div class="footer"></div>
+     </div>
   </div>
 </body>
 </html>

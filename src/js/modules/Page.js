@@ -3,7 +3,7 @@
         // this.o={
         //     wrp: $('.wrapper')
         // };
-        console.log('test');
+        console.log('page ready');
     }
     init() {}
 	reset() {}
