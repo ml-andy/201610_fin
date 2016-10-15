@@ -4,6 +4,17 @@
 body{
     overflow-x:hidden;
 }
+.loading{
+    @include flt;
+    z-index: 99;
+    background-color: rgba(0,0,0,0.8);
+    .main{
+        @include am(auto,auto);
+        @include fontvw(28,36,#fff);
+        letter-spacing: getVW(4);
+        text-align: center;
+    }
+}
 .header{
     @include flt;
     height: getVW(100);
@@ -21,8 +32,19 @@ body{
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
-        &.on{
+        &:before{
+            content:"";
+            @include alt;
             background-image: url(../images/menubtn_close.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+            opacity: 0;
+        }
+        &.on{
+            &:before{
+                opacity: 1;
+            }
         }
     }
 }

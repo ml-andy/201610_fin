@@ -1,6 +1,10 @@
 ﻿class App {
 	constructor() {
 		this.ready();
+		this.loading = $('.loading');
+		$(window).load(function(){
+			this.windowLoad();
+		}.bind(this));
 	}
 	ready() {
 		this.page = $('.page');
@@ -25,6 +29,9 @@
 				this.login_number_success = new Login_number_success();
 				break;
 		}
+	}
+	windowLoad(){
+		this.loading.fadeOut();
 	}
 }
 
