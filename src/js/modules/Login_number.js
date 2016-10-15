@@ -41,6 +41,7 @@ class VerPopup {
         if(this.drag_left<0) this.drag_left=0;
         else if(this.drag_left >= this.goal){
             this.showverPopup(false);
+            this.bottle1.unbind('touchmove', this.bottle1touchmove.bind(this));
             return;
         }
 
