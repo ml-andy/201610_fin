@@ -18,6 +18,12 @@
 			case 'login_member_nodata_confirm':
 				this.login_member_nodata_confirm = new Login_member_nodata_confirm();
 				break;
+			case 'login_number':
+				this.login_number = new Login_number();
+				break;
+			case 'login_number_success':
+				this.login_number_success = new Login_number_success();
+				break;
 		}
 	}
 }

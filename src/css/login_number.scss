@@ -1,0 +1,112 @@
+@import "_base.scss";
+.wrapper{
+    .page{
+        &.login_number{
+            .com_title{
+                &:before{
+                    background-image: url(../images/login_number_title.png);
+                }
+            }
+            .com_main{
+                .content{
+                    //width:478
+                    .des{
+                        @include r;
+                        height: getVW(46);
+                        background-image: url(../images/login_number_des.png);
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center center;
+                        margin-bottom: getVW(18);
+                    }
+                    .data{
+                        @include r;
+                        width: getVW(310);
+                        margin-left: getVW(84);
+                        margin-bottom: getVW(15);
+                        li{
+                            @include r;
+                            margin-bottom: getVW(20);
+                            input{
+                                @include r;
+                                @include fontvw(22,66,#414141);
+                                text-indent: getVW(20);
+                                height: getVW(66);
+                                background-color: #fff;
+                                &.error{
+                                    color: #e31414;
+                                }
+                                &.ok{
+                                    color: #00ac96;
+                                }
+                            }
+                            .submit{
+                                @include rvw(285,108);
+                                background-image: url(../images/login_member_go_btn.png);
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                background-position: center center;
+                                margin-left: getVW(10);
+                                text-indent: -99999px;
+                                cursor: pointer;
+                                a{
+                                    @include alt;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.verPopup{
+    @include flt;
+    min-height: getVW(1083);
+    background-color: rgba(0,0,0,0.8);
+    z-index: 10;
+    display: none;
+    .main{
+        @include alt;
+        width: getVW(585);
+        left: 50%;
+        margin-left: getVW(-292);
+        min-height: getVW(1083);
+        background-image: url(../images/login_number_verpopup_bg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center getVW(53);
+        .des{
+            @include altvw(394,100,104,202);
+            background-image: url(../images/login_number_verpopup_des.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+        }
+        .bottle1{
+            @include altvw(96,331,93,396);
+            background-image: url(../images/login_number_verpopup_bottle1.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+            z-index: 1;
+        }
+        .icon{
+            @include altvw(96,154,255,573);
+            background-image: url(../images/login_number_verpopup_icon.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+            z-index: 0;
+        }
+        .bottle2{
+            @include altvw(118,351,400,386);
+            background-image: url(../images/login_number_verpopup_bottle2.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+            z-index: 0;
+        }
+        
+    }
+}

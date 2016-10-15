@@ -2,7 +2,7 @@
 
 //common
 body{
-    overflow-x:hidden; 
+    overflow-x:hidden;
 }
 .header{
     @include flt;
@@ -194,3 +194,9 @@ body{
 
 //login_member_nodata_confirm
 @import "login_member_nodata_confirm.scss";
+
+//login_number
+@import "login_number.scss";
+
+//login_number_success
+@import "login_number_success.scss";

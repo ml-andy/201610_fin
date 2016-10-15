@@ -27,7 +27,7 @@ gulp.task('js',function(){
 			presets: ['es2015']
 		}))
 		.pipe($.concat("app.js"))
-    	.pipe($.uglify())
+    	// .pipe($.uglify())
 	    .pipe($.sourcemaps.write())
 	    .pipe(gulp.dest('dist/js'))
 		.pipe($.connect.reload());
