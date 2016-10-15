@@ -50,7 +50,7 @@
                 window.location.href="login_number.html";
                 break;
             case 'm9':
-                window.location.href="./";
+                window.location.href="index.html";
                 break;
         }
     }
