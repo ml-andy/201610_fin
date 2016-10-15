@@ -1,0 +1,124 @@
+@import "_base.scss";
+.wrapper{
+    .page{
+        &.login_member_nodata{
+            .com_title{
+                &:before{
+                    background-image: url(../images/login_member_nodata_title.png);
+                }
+            }
+            .com_main{
+                .content{
+                    .btn{
+                        @include r;
+                        margin-bottom: getVW(20);
+                        .nodata_btn{
+                            @include rvw(229,87);
+                            margin-right: getVW(16);
+                            background-image: url(../images/login_member_nodata_btn1.png);
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            background-position: center center;
+                            cursor: pointer;
+                            &.on{
+                                background-image: url(../images/login_member_nodata_btn2.png);
+                            }
+                            a{
+                                @include alt;
+                            }
+                        }
+                        .hasdata_btn{
+                            @include rvw(229,87);
+                            background-image: url(../images/login_member_hasdata_btn1.png);
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            background-position: center center;
+                            cursor: pointer;
+                            &.on{
+                                background-image: url(../images/login_member_hasdata_btn2.png);
+                            }
+                            a{
+                                @include alt;
+                            }
+                        }
+                    }
+                    
+                    .data{
+                        @include r;
+                        li{
+                            @include r;
+                            margin-bottom: getVW(17);
+                            &:last-child{
+                                margin-bottom: 0;
+                            }
+                            input{
+                                @include r;
+                                @include fontvw(25,66,#414141);
+                                text-indent: getVW(20);
+                                height: getVW(66);
+                                background-color: #fff;
+                                &.on{
+                                    color: red;
+                                }
+                                &.vercode{
+                                    width: getVW(264);
+                                    margin-right: getVW(15);
+                                }
+                            }
+                            .vercode_img{
+                                @include rvw(170,50);
+                                margin-top: getVW(8);
+                            }
+                            select{
+                                @include r;
+                                @include fontvw(25,66,#414141);
+                                text-indent: getVW(20);
+                                width: getVW(230);
+                                height: getVW(66);
+                                background-color: #fff;
+                                margin-right: getVW(18);
+                                &:nth-child(2n){
+                                    margin-right: 0;
+                                }
+                            }
+                            .s{
+                                @include r;
+                                @include fontvw(22,30,#414141);
+                            }
+                            .agree{
+                                @include r;
+                                box-sizing: border-box;
+                                padding-left: getVW(70);
+                                .checkbox{
+                                    @include altvw(58,58);
+                                    box-sizing: border-box;
+                                    border: getVW(5) solid #9a9a9a;
+                                    background-color: #fff;
+                                    &.on{
+                                        background-image: url(../images/checkbox.png);
+                                        background-size: contain;
+                                        background-repeat: no-repeat;
+                                        background-position: center center;
+                                    }
+                                }
+                                a{
+                                    @include r;
+                                    @include fontvw(27,29,#205daf);
+                                }
+                            }
+                            .submitbtn{
+                                @include rvw(285,108);
+                                background-image: url(../images/login_member_go_btn.png);
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                background-position: center center;
+                                margin-left: getVW(96);
+                                text-indent: -99999px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <title>標題</title>
@@ -43,15 +43,32 @@
     <div class="cover"></div>
   </div>
   <div class="wrapper">
-     <div class="page index">
-       <div class="title"></div>
-       <div class="waterchild"></div>
-       <div class="banner_box">
-         <div class="banner" style="background-image:url(images/index_banner1.png);"></div>
-         <div class="banner" style="background-image:url(images/index_banner2.png);"></div>
+     <div class="page login_member">
+       <div class="com_title"></div>
+       <div class="com_main">
+           <div class="content">
+               <div class="btn">
+                   <div class="nodata_btn">
+                       <a href="login_member_nodata.html"></a>
+                   </div>
+                   <div class="hasdata_btn on">
+                       <a href="javascript:;"></a>
+                   </div>
+               </div>
+               <div class="des"></div>
+               <ul class="data">
+                   <li><input type="text" class="idcard" placeholder="請填寫身分證字號 (英文字母請大寫)"></li>
+                   <li><input type="text" class="phone" placeholder="請輸入您的聯絡手機號碼"></li>
+                   <li>
+                       <input type="text" class="vercode" placeholder="請輸入4碼半形數字">
+                       <img src="images/login_member_fake_code.jpg" alt="" class="vercode_img">
+                   </li>
+                   <li>
+                       <div class="submitbtn">確認送出</div>
+                   </li>
+               </ul>
+           </div>
        </div>
-       <div class="gamePlay_btn"></div>
-       <div class="footer">使用手機瀏覽，建議使用ios8.4以上(含)，Android4.3以上(含)；Chrome及Safari以獲得最佳瀏覽效果</div>
      </div>
   </div>
 </body>

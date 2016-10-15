@@ -1,5 +1,196 @@
 @import "_base.scss";
 
+//common
+body{
+    overflow-x:hidden; 
+}
+.header{
+    @include flt;
+    height: getVW(100);
+    z-index: 9;
+    .logo{
+        @include altvw(126,100);
+        background-image: url(../images/logo.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    .menubtn{
+        @include artvw(105,95);
+        background-image: url(../images/menubtn_open.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        &.on{
+            background-image: url(../images/menubtn_close.png);
+        }
+    }
+}
+.menu{
+    @include flt;
+    z-index: 0;
+    &.on{
+        z-index: 8;
+    }
+    .menua_box{
+        @include am;
+        width: getVW(590);
+        height: auto;
+        min-height: getVW(640);
+        z-index: 1;
+        .menua{
+            @include rvw(183,183);
+            margin-right: getVW(20);
+            margin-bottom: getVW(40);
+            background-image: url(../images/menubg_yellow.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            cursor: pointer;
+            text-indent: -9999px;
+            &:nth-child(3n){
+                margin-right: 0;
+            }
+            &:before{
+                @include alt;
+                content:"";
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+            &.m1{
+                &:before{
+                    background-image: url(../images/menu_1.png);
+                }
+            }
+            &.m2{
+                &:before{
+                    background-image: url(../images/menu_2.png);
+                }
+            }
+            &.m3{
+                &:before{
+                    background-image: url(../images/menu_3.png);
+                }
+            }
+            &.m4{
+                &:before{
+                    background-image: url(../images/menu_4.png);
+                }
+            }
+            &.m5{
+                &:before{
+                    background-image: url(../images/menu_5.png);
+                }
+            }
+            &.m6{
+                &:before{
+                    background-image: url(../images/menu_6.png);
+                }
+            }
+            &.m7{
+                background-image: url(../images/menubg_blue.png);
+                &:before{
+                    background-image: url(../images/menu_7.png);
+                }
+            }
+            &.m8{
+                background-image: url(../images/menubg_red.png);
+                &:before{
+                    background-image: url(../images/menu_8.png);
+                }
+            }
+            &.m9{
+                &:before{
+                    background-image: url(../images/menu_9.png);
+                }
+            }
+            
+        }
+    }
+    .cover{
+        @include alt;
+        z-index: 0;
+        background-color: rgba(0,0,0,0.8);
+    }
+}
 .wrapper{
     @include r;
+    background-image: url(../images/index_bg.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center top;
+    min-height: 100%;
+    z-index: 1;
+    background-color: #67b80c;
+    .page{
+        @include r;
+        min-height: 100%;
+        .com_title{
+            @include rvw(100,493);
+            width: 100%;
+            margin-top: getVW(20);
+            background-image: url(../images/all_title_bg.png);
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            background-position: center center;
+            z-index: 1;
+            &:before{
+                content:'';
+                @include altvw(100,110,0,262);
+                width: 100%;
+                background-size: auto 100%;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+        }
+        .com_main{
+            @include r;
+            width: getVW(534);
+            margin-top: getVW(-26);
+            margin-left: getVW(53);
+            margin-bottom: getVW(28);
+            z-index: 0;
+            box-sizing: border-box;
+            padding: getVW(34) 0;
+            &:before{
+                content:"";
+                @include alt;
+                height: getVW(34);
+                background-image: url(../images/login_member_main_bg_top.png);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                background-position: center bottom;
+            }
+            &:after{
+                content:"";
+                @include alb;
+                height: getVW(34);
+                background-image: url(../images/login_member_main_bg_bot.png);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                background-position: center bottom;
+            }
+            .content{
+                @include r;
+                background-image: url(../images/login_member_main_bg_mid.png);
+                background-size: 100% auto;
+                background-position: center top;
+                box-sizing: border-box;
+                padding: 0 getVW(28);
+            }
+        }
+    }
 }
+
+//index
+@import "index.scss";
+
+//login_member
+@import "login_member.scss";
+
+//login_member_nodata
+@import "login_member_nodata.scss";
+
+//login_member_nodata_confirm
+@import "login_member_nodata_confirm.scss";

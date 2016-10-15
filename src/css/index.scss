@@ -1,0 +1,61 @@
+@import "_base.scss";
+.wrapper{
+    .page{
+        &.index{
+            .title{
+                @include altvw(554,404,50,110,-277);
+                left: 50%;
+                background-image: url(../images/index_title.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+            .waterchild{
+                @include altvw(326,432,50,502,-7);
+                left: 50%;
+                background-image: url(../images/index_waterchild.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+                z-index: 0;
+            }
+            .banner_box{
+                @include altvw(357,444,18,490);
+                z-index: 1;
+                .banner{
+                    @include alt;
+                    background-size: 100% auto;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    opacity: 0;
+                    transform: translateX(10%);
+                    transition: 0.5s;
+                    z-index: 0;
+                    &.on{
+                        opacity: 1;
+                        z-index: 1;
+                        transform: translateX(0);
+                    }
+                }
+            }
+            .gamePlay_btn{
+                @include rvw(486,108);
+                margin-left: getVW(80);
+                margin-bottom: getVW(20);
+                margin-top: getVW(976);
+                background-image: url(../images/index_playgame_btn.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+                cursor: pointer;
+                z-index: 2;
+            }
+            .footer{
+                @include r;
+                @include fontvw(12,28,#000000);
+                text-align: center;
+                margin-bottom: getVW(10);
+            }
+        }
+    }
+}

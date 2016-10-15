@@ -1,0 +1,77 @@
+@import "_base.scss";
+.wrapper{
+    .page{
+        &.login_member_nodata_confirm{
+            .com_title{
+                &:before{
+                    background-image: url(../images/login_member_nodata_confirm_title.png);
+                }
+            }
+            .com_main{
+                .content{
+                    .des{
+                        @include r;
+                        height: getVW(88);
+                        background-image: url(../images/login_member_nodata_confirm_des.png);
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: center center;
+                        margin-bottom: getVW(20);
+                    }
+                    .data{
+                        @include r;
+                        box-sizing: border-box;
+                        border: getVW(3) dotted #fff;
+                        padding: getVW(20) 0;
+                        margin-bottom: getVW(25);
+                        li{
+                            @include r;
+                            margin-bottom: getVW(15);
+                            .left{
+                                @include altvw(166,30);
+                                @include fontvw(25,30,#414141);
+                                text-align: right;
+                            }
+                            .right{
+                                @include r;
+                                @include fontvw(25,30,#1c56ac);
+                                box-sizing: border-box;
+                                padding-left: getVW(180);
+                            }
+                        }
+                    }
+                    .btn{
+                        @include r;
+                        width: getVW(285);
+                        margin-left: getVW(96);
+                        .modify{
+                            @include r;
+                            height: getVW(108);
+                            margin-bottom: getVW(22);
+                            background-image: url(../images/login_member_nodata_confirm_btn1.png);
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            background-position: center center;
+                            cursor: pointer;
+                            a{
+                                @include alt;
+                            }
+                        }
+                        .submit{
+                            @include r;
+                            height: getVW(108);
+                            background-image: url(../images/login_member_go_btn.png);
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            background-position: center center;
+                            cursor: pointer;
+                            a{
+                                @include alt;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

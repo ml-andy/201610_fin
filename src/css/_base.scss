@@ -263,12 +263,7 @@ img{vertical-align:top;}
 html{-webkit-text-size-adjust: 100%;}
 
 @function getVW($aa) {
-  @if $vpw > 0 {
-    @return $aa * 1px;
-  }
-  @else if $vpw == 0 {
-    @return ($aa / 750) * 100vw;
-  }
+  @return ($aa / 640) * 100vw;
 }
 @function getVH($aa) {
   @return ($aa / 1334) * 100vh;
