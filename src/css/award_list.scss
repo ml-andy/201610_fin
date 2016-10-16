@@ -1,0 +1,195 @@
+@import "_base.scss";
+.wrapper{
+    .page{
+        &.award_list{
+            .com_title{
+                &:before{
+                    background-image: url(../images/award_list_title.png);
+                }
+            }
+            .com_main{
+                .content{
+                    //width:478
+                    .searchbox{
+                        @include r;
+                        margin-bottom: getVW(30);
+                        .list_style{
+                            @include rvw(276,66);
+                            @include fontvw(22,66,#414141);
+                            text-indent: getVW(10);
+                            margin-right: getVW(20);
+                            background-color: #fff;
+                        }
+                        .phone{
+                            @include rvw(170,66);
+                            @include fontvw(22,66,#414141);
+                            text-indent: getVW(10);
+                            background-color: #fff;
+                        }
+                        .btn{
+                            @include r;
+                            margin-top: getVW(38);
+                            text-align: center;
+                            .submit{
+                                position: relative;
+                                width: getVW(285);
+                                height: getVW(108);
+                                background-image: url(../images/award_list_btn.png);
+                                background-repeat: no-repeat;
+                                background-size: contain;
+                                background-position: center center;
+                                display: inline-block;
+                                cursor: pointer;
+                                a{
+                                    @include alt;
+                                }
+                            }
+                        }
+                    }
+                    .list_month{
+                        @include r;
+                        margin-bottom: getVW(30);
+                        .title{
+                            @include r;
+                            height: getVW(61);
+                            background-image: url(../images/inquire_st1.png);
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: center center;
+                            margin-bottom: getVW(25);
+                        }
+                        .box{
+                            @include r;
+                            margin-bottom: getVW(25);
+                            box-sizing: border-box;
+                            border: 1px solid #414141;
+                            .st{
+                                @include r;
+                                @include fontvw(25,54,#ffffff);
+                                text-align: center;
+                                height: getVW(54);
+                                background-color: #3d1b02;
+                                border-bottom: 1px solid #414141;
+                            }
+                            .date{
+                                @include r;
+                                @include fontvw(25,48,#ffffff);
+                                text-align: center;
+                                height: getVW(48);
+                                background-color: #86400d;
+                                border-bottom: 1px solid #414141;
+                            }
+                            ul{
+                                @include r;
+                                &:before{
+                                    content:"";
+                                    @include alt(1px,100%,30%);
+                                    background-color: #414141;
+                                    z-index: 1;
+                                }
+                                &:after{
+                                    content:"";
+                                    @include alt(1px,100%,65%);
+                                    background-color: #414141;
+                                    z-index: 1;
+                                }
+                                li{
+                                    @include r;
+                                    @include fontvw(25,40,#414141);
+                                    z-index: 0;
+                                    text-align: center;
+                                    border-bottom: 1px solid #414141;
+                                    background-color: #ffffff;
+                                    &.t{
+                                        color: #fff;
+                                        background-color: #f5791f;
+                                    }
+                                    &:last-child{
+                                        border-bottom: 0;
+                                    }
+                                    .item{
+                                        @include r(35%);
+                                        &:nth-child(1){
+                                            @include r(30%);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .list_week{
+                        @include r;
+                        margin-bottom: getVW(10);
+                        .title{
+                            @include r;
+                            height: getVW(61);
+                            background-image: url(../images/inquire_st2.png);
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: center center;
+                            margin-bottom: getVW(25);
+                        }
+                        .box{
+                            @include r;
+                            margin-bottom: getVW(25);
+                            box-sizing: border-box;
+                            border: 1px solid #414141;
+                            .st{
+                                @include r;
+                                @include fontvw(25,54,#ffffff);
+                                text-align: center;
+                                height: getVW(54);
+                                background-color: #041f42;
+                                border-bottom: 1px solid #414141;
+                            }
+                            .date{
+                                @include r;
+                                @include fontvw(25,48,#ffffff);
+                                text-align: center;
+                                height: getVW(48);
+                                background-color: #0d3b78;
+                                border-bottom: 1px solid #414141;
+                            }
+                            ul{
+                                @include r;
+                                &:before{
+                                    content:"";
+                                    @include alt(1px,100%,30%);
+                                    background-color: #414141;
+                                    z-index: 1;
+                                }
+                                &:after{
+                                    content:"";
+                                    @include alt(1px,100%,65%);
+                                    background-color: #414141;
+                                    z-index: 1;
+                                }
+                                li{
+                                    @include r;
+                                    @include fontvw(25,40,#414141);
+                                    z-index: 0;
+                                    text-align: center;
+                                    border-bottom: 1px solid #414141;
+                                    background-color: #ffffff;
+                                    &.t{
+                                        color: #fff;
+                                        background-color: #205daf;
+                                    }
+                                    &:last-child{
+                                        border-bottom: 0;
+                                    }
+                                    .item{
+                                        @include r(35%);
+                                        &:nth-child(1){
+                                            @include r(30%);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

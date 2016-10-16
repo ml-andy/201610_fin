@@ -1,0 +1,87 @@
+@import "_base.scss";
+.wrapper{
+    .page{
+        &.about{
+            .com_title{
+                &:before{
+                    background-image: url(../images/about_title.png);
+                }
+            }
+            .com_main{
+                .content{
+                    //width:478
+                    .st1{
+                        @include r;
+                        height: getVW(61);
+                        background-image: url(../images/about_st1.png);
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center center;
+                        margin-bottom: getVW(24);
+                    }
+                    .st2{
+                        @include r;
+                        height: getVW(61);
+                        background-image: url(../images/about_st2.png);
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center center;
+                        margin-bottom: getVW(24);
+                        margin-top: getVW(20);
+                    }
+                    .st3{
+                        @include r;
+                        height: getVW(61);
+                        background-image: url(../images/about_st3.png);
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center center;
+                        margin-bottom: getVW(24);
+                    }
+                    .st4{
+                        @include r;
+                        height: getVW(61);
+                        background-image: url(../images/about_st4.png);
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center center;
+                        margin-bottom: getVW(24);
+                    }
+                    .w{
+                        @include r;
+                        @include fontvw(25,32,#414141);
+                        margin-bottom: getVW(10);
+                    }
+                    .ss{
+                        @include r;
+                        @include fontvw(18,24,#7b7b7b);
+                        margin-bottom: getVW(15);
+                    }
+                    .org{
+                        @include r;
+                        @include fontvw(30,32,#f5791f,bolder);
+                    }
+                    .blue{
+                        @include r;
+                        @include fontvw(30,32,#116fee,bolder);
+                    }
+                    .red{
+                        @include r;
+                        @include fontvw(25,32,#de1818);
+                    }
+                    .sst{
+                        @include r;
+                        @include fontvw(30,32,#414141,bolder);
+                        margin-bottom: getVW(10);
+                    }
+                    .word{
+                        @include r;
+                        @include fontvw(25,32,#414141);
+                        box-sizing: border-box;
+                        padding-left: getVW(13);
+                    }
+                }
+            }
+        }
+    }
+}

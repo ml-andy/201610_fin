@@ -1,0 +1,82 @@
+@import "_base.scss";
+.wrapper{
+    .page{
+        &.inquire{
+            .com_title{
+                &:before{
+                    background-image: url(../images/inquire_title.png);
+                }
+            }
+            .com_main{
+                .content{
+                    //width:478
+                    .des{
+                        @include r;
+                        height: getVW(41);
+                        margin-bottom: getVW(25);
+                        background-image: url(../images/inquire_des.png);
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center center;
+                    }
+                    .box{
+                        @include r;
+                        margin-bottom: getVW(15);
+                        .st1{
+                            @include r;
+                            height: getVW(61);
+                            background-image: url(../images/inquire_st1.png);
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: center center;
+                            margin-bottom: getVW(12);
+                        }
+                        .prize1{
+                            @include r;
+                            height: getVW(159);
+                            background-image: url(../images/inquire_prize1.png);
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: center center;
+                            margin-bottom: getVW(15);
+                        }
+                        .word1{
+                            @include r;
+                            @include fontvw(38,48,#414141,bolder);
+                            text-align: center;
+                            .num{
+                                @include fontvw(60,48,#f11a1a,bolder);
+                            }
+                        }
+                        .st2{
+                            @include r;
+                            height: getVW(61);
+                            background-image: url(../images/inquire_st2.png);
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: center center;
+                            margin-bottom: getVW(12);
+                        }
+                        .prize2{
+                            @include r;
+                            height: getVW(119);
+                            background-image: url(../images/inquire_prize2.png);
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: center center;
+                            margin-bottom: getVW(15);
+                        }
+                        .word2{
+                            @include r;
+                            @include fontvw(38,48,#414141,bolder);
+                            text-align: center;
+                            .num{
+                                @include fontvw(60,48,#f11a1a,bolder);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

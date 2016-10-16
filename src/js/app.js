@@ -28,6 +28,18 @@
 			case 'login_number_success':
 				this.login_number_success = new Login_number_success();
 				break;
+			case 'inquire':
+				this.inquire = new Inquire();
+				break;
+			case 'award_list':
+				this.award_list = new Award_list();
+				break;
+			case 'award_info':
+				this.award_info = new Award_info();
+				break;
+			case 'about':
+				this.about = new About();
+				break;
 		}
 	}
 	windowLoad(){
