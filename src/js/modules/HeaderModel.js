@@ -26,10 +26,10 @@
     menuaClick(menulink){
         switch (menulink) {
             case 'm1':
-                window.location.href="login_member.html";
+                window.location.href="login_member.php";
                 break;
             case 'm2':
-                window.location.href="inquire.html";
+                window.location.href="inquire.php";
                 break;
             case 'm3':
                 window.location.href="about.html";
@@ -44,10 +44,11 @@
                 console.log('share fb');
                 break;
             case 'm7':
-                window.location.href="game_list.html";
+                // window.location.href="game_list.html";
+                alert('遊戲將於11/2正式上線');
                 break;
             case 'm8':
-                window.location.href="login_number.html";
+                window.location.href="login_number.php";
                 break;
             case 'm9':
                 window.location.href="index.html";

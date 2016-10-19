@@ -7,6 +7,8 @@
 		}.bind(this));
 	}
 	ready() {
+		if(device.desktop()) window.location.href = window.location.href.replace('/m/','/');
+		
 		this.page = $('.page');
 
 		switch (this.page.attr('class').split('page ')[1]) {
