@@ -80,6 +80,11 @@
                         box-sizing: border-box;
                         padding-left: getVW(13);
                     }
+                    .item1{
+                        float: right;
+                        width: getVW(130);
+                        height: getVW(151);
+                    }
                 }
             }
         }

@@ -16,7 +16,7 @@ body{
     }
 }
 .header{
-    @include flt;
+    @include alt;
     height: getVW(100);
     z-index: 9;
     .logo{

@@ -1,3 +1,35 @@
+<?
+    //------------------------------------------------------------
+    //include file, default value
+    //------------------------------------------------------------
+    include_once('../include/application.php');
+
+
+    //------------------------------------------------------------
+    //檢查是否已登入
+    //------------------------------------------------------------
+    if (isset($_COOKIE['uid'])) {
+    	$uid = $_COOKIE['uid'];
+        if ($uid == "") header("Location: login_member.php");
+    } else
+        header("Location: login_member.php");
+
+
+	//------------------------------------------------------------
+	//設定資料庫連線
+	//------------------------------------------------------------
+	$db = new dbstuff;
+	$db->connect(DB_HOST, DB_UID, DB_PWD, DB_NAME);
+
+
+    //------------------------------------------------------------
+    //計算可抽獎次數
+    //------------------------------------------------------------
+    $sql = "select count(id) from tbuser_sn_q4 where uid = $uid";
+    $result_slt = $db->query($sql);
+
+    list($mtimes) = $db->fetch_row($result_slt);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,15 +82,27 @@
     <div class="cover"></div>
   </div>
   <div class="wrapper">
-     <div class="page index">
-       <div class="title"></div>
-       <div class="waterchild"></div>
-       <div class="banner_box">
-         <div class="banner" style="background-image:url(images/index_banner1.png);"></div>
-         <div class="banner" style="background-image:url(images/index_banner2.png);"></div>
+     <div class="page inquire">
+       <div class="com_title"></div>
+       <div class="com_main">
+           <div class="content">
+               <div class="des"></div>
+               <div class="box">
+                   <div class="st1"></div>
+                   <div class="prize1"></div>
+                   <div class="word1">
+                       共累積<span class="num"><?=$mtimes?></span>次抽獎機會
+                   </div>
+               </div>
+               <div class="box">
+                   <div class="st2"></div>
+                   <div class="prize2"></div>
+                   <div class="word2">
+                       共累積<span class="num">0</span>次抽獎機會
+                   </div>
+               </div>
+           </div>
        </div>
-       <div class="gamePlay_btn"></div>
-       <div class="footer">使用手機瀏覽，建議使用ios8.4以上(含)，Android4.3以上(含)；Chrome及Safari以獲得最佳瀏覽效果</div>
      </div>
   </div>
 </body>

@@ -2,6 +2,7 @@
 .wrapper{
     .page{
         &.index{
+            transform-origin: 50% 0%;
             .title{
                 @include altvw(554,404,50,110,-277);
                 left: 50%;

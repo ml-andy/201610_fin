@@ -1,7 +1,33 @@
+<?
+    //------------------------------------------------------------
+    //檢查是否已登入
+    //------------------------------------------------------------
+    if (isset($_COOKIE['uid'])) {
+        if ($_COOKIE['uid'] != "") header("Location: login_number.php");
+    }
+
+
+    //------------------------------------------------------------
+    //已填寫的資料
+    //------------------------------------------------------------
+	$name = $_COOKIE['name'];
+	$ident = $_COOKIE['ident'];
+	$email = $_COOKIE['email'];
+	$phone = $_COOKIE['phone'];
+	$gender = $_COOKIE['gender'];
+	$age = $_COOKIE['age'];
+	$zip = $_COOKIE['zip'];
+	$city = $_COOKIE['city'];
+	$state = $_COOKIE['state'];
+	$street = $_COOKIE['street'];
+
+    $genderList = array("m"=>"男", "f"=>"女");
+    $ageList = array("14歲以下", "15-19歲", "20-24歲", "25-29歲", "30-34歲", "35-39歲", "40歲以上");
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>標題</title>
+<title>FIN x GARMIN 全民運動會</title>
 <meta charset="UTF-8">
 <meta lang="tw">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -24,6 +50,8 @@
 <script src="lib/device.min.js"></script>
 <script src="/js/google_ga.js"></script>
 <script src="js/app.js"></script>
+<script src="/js/jquery.ajaxform.js"></script>
+<script src="/js/index.js"></script>
 </head>
 <body>
   <div class="loading">
@@ -50,43 +78,48 @@
     <div class="cover"></div>
   </div>
   <div class="wrapper">
-     <div class="page award_info">
+     <div class="page login_member_nodata_confirm">
        <div class="com_title"></div>
        <div class="com_main">
+           <form class="form-confirm">
            <div class="content">
-               <div class="st1"></div>
-               <div class="prize1"></div>
-               <div class="word">
-                   <span class="red">一、SONY PlayStation 4 +PlayStation VR豪華全配包(每月抽出5名/共10名)</span><br>
-                   1.內含PlayStation 4 x1、DUALSHOCK™4無線控制器x1、VR頭戴裝置x1、PlayStation Camera x1、PlayStation Move x2 <br><br>
-                   <span class="red">二、Garmin Forerunner®735XT運動手錶(每月抽出4名/共8名)</span><br>
-                   <img src="images/award_info_prize2.png" class="prize2">
-                   1.全天候手腕式心率監測，跑步時不用戴心跳帶也能測得正確心率。<br>
-                   2.進階跑步動態與騎乘動態資訊：如步幅、觸地時間平衡、移動參數、功率分佈、踩踏施力偏移等多項指標。<br>
-                   3.提供最大攝氧量、乳酸閾值、完賽預估和體能恢復建議。<br>
-                   4.豐富藍牙連結3應用：智慧提示、自動上傳資料至 Garmin Connect™、即時位置追蹤等功能。<br>
-                   5.在Connect IQ™ 商店下載專屬個人的資料頁面、錶面、小工具與應用程式。<br><br>
-                   <span class="red">三、Garmin Vivofit3聯名運動手環(每月抽出80名/共160名)</span><br>
-                   <img src="images/award_info_prize3.png" class="prize3">
-                   1.長達1年的待機時間。<br>
-                   2.追蹤並顯示步數、距離、消耗熱量與高強度活動時間等資訊。<br>
-                   3.在Garmin Connect™觀看Move IQ™所自動分辨的活動類型。<br>
-                   4.久坐聲音提示提醒您隨時保持活躍且積極的每個時刻。<br>
-                   5.儲存的活動資料、訓練計畫及分享的活動會自動同步到Garmin Connect。<br>
-               </div>
-               <div class="st2"></div>
-               <div class="word">
-                   <span class="red">
-                       一、FIN健康補給飲料580ml乙箱(每週抽10名/共120名)<br>
-                       <img src="images/award_info_prize4.png" class="prize4">
-                       二、iPhone7 32GB(最後一週加碼抽2名/共2名)<br>
-                   </span>
-                   <span class="s">
-                       *贈品價值請依各贈品販售商之官網建議售價為準<br>
-                       *活動贈品以實際寄出之實物為準
-                    </span>
+               <div class="des"></div>
+               <ul class="data">
+                 <li>
+                   <div class="left">姓名 :</div>
+                   <div class="right"><?=$name?></div>
+                 </li>
+                 <li>
+                   <div class="left">身分證字號 :</div>
+                   <div class="right"><?=$ident?></div>
+                 </li>
+                 <li>
+                   <div class="left">手機 :</div>
+                   <div class="right"><?=$phone?></div>
+                 </li>
+                 <li>
+                   <div class="left">E-mail :</div>
+                   <div class="right"><?=$email?></div>
+                 </li>
+                 <li>
+                   <div class="left">性別 :</div>
+                   <div class="right"><?=$genderList[$gender]?></div>
+                 </li>
+                 <li>
+                   <div class="left">年齡 :</div>
+                   <div class="right"><?=$ageList[$age]?></div>
+                 </li>
+                 <li>
+                   <div class="left">地址 :</div>
+                   <div class="right"><?=$city . $state . $street?></div>
+                 </li>
+               </ul>
+               <div class="btn">
+                 <div class="modify"></div>
+                 <div class="submit"></div>
                </div>
            </div>
+           </form>
        </div>
      </div>
   </div>

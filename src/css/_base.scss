@@ -266,7 +266,7 @@ html{-webkit-text-size-adjust: 100%;}
   @return ($aa / 640) * 100vw;
 }
 @function getVH($aa) {
-  @return ($aa / 1334) * 100vh;
+  @return ($aa / 1136) * 100vh;
 }
 @function count_point_l($aa) {
   @return ($aa / 10440) * 100%;
