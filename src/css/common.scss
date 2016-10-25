@@ -11,8 +11,15 @@ body{
     .main{
         @include am(auto,auto);
         @include fontvw(28,36,#fff);
+        width: getVW(80);
+        height: getVW(80);
         letter-spacing: getVW(4);
+        text-indent: -99999px;
         text-align: center;
+        background-image: url(../images/spin.gif);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
     }
 }
 .header{

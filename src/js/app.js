@@ -177,7 +177,7 @@ var HeaderModel = function () {
                     break;
                 case 'm5':
                     setTrackButton('btn_m_winner');
-                    window.location.href = "award_list.php";
+                    window.location.href = "award_list.html";
                     break;
                 case 'm6':
                     if (this.menubtn.hasClass('on')) setTrackButton('btn_m_share_fb');

@@ -46,6 +46,27 @@
                             }
                         }
                     }
+                    .list_not_winning{
+                        @include r;
+                        margin-bottom: getVW(30);
+                        .title{
+                            @include r;
+                            height: getVW(61);
+                            background-image: url(../images/inquire_st3.png);
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: center center;
+                            margin-bottom: getVW(25);
+                        }
+                        .pic{
+                            @include r;
+                            height: getVW(62);
+                            background-image: url(../images/award_list_notaward.png);
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: center center;
+                        }
+                    }
                     .list_month{
                         @include r;
                         margin-bottom: getVW(30);
@@ -81,17 +102,23 @@
                             }
                             ul{
                                 @include r;
-                                &:before{
-                                    content:"";
-                                    @include alt(1px,100%,30%);
-                                    background-color: #414141;
-                                    z-index: 1;
-                                }
-                                &:after{
-                                    content:"";
-                                    @include alt(1px,100%,65%);
-                                    background-color: #414141;
-                                    z-index: 1;
+                                .linebox{
+                                    @include alt;
+                                    z-index: 9;
+                                    pointer-events: none;
+                                    .line{
+                                        @include alt(1px,100%,30%);
+                                        background-color: #414141;
+                                        &:nth-child(1){
+                                            left: 18%;
+                                        }
+                                        &:nth-child(2){
+                                            left: 50%;
+                                        }
+                                        &:nth-child(3){
+                                            left: 82%;
+                                        }
+                                    }
                                 }
                                 li{
                                     @include r;
@@ -108,9 +135,12 @@
                                         border-bottom: 0;
                                     }
                                     .item{
-                                        @include r(35%);
+                                        @include r(32%);
                                         &:nth-child(1){
-                                            @include r(30%);
+                                            @include r(18%);
+                                        }
+                                        &:nth-child(4){
+                                            @include r(18%);
                                         }
                                     }
                                 }
@@ -152,17 +182,23 @@
                             }
                             ul{
                                 @include r;
-                                &:before{
-                                    content:"";
-                                    @include alt(1px,100%,30%);
-                                    background-color: #414141;
-                                    z-index: 1;
-                                }
-                                &:after{
-                                    content:"";
-                                    @include alt(1px,100%,65%);
-                                    background-color: #414141;
-                                    z-index: 1;
+                                .linebox{
+                                    @include alt;
+                                    z-index: 9;
+                                    pointer-events: none;
+                                    .line{
+                                        @include alt(1px,100%,30%);
+                                        background-color: #414141;
+                                        &:nth-child(1){
+                                            left: 18%;
+                                        }
+                                        &:nth-child(2){
+                                            left: 50%;
+                                        }
+                                        &:nth-child(3){
+                                            left: 82%;
+                                        }
+                                    }
                                 }
                                 li{
                                     @include r;
@@ -179,9 +215,12 @@
                                         border-bottom: 0;
                                     }
                                     .item{
-                                        @include r(35%);
+                                        @include r(32%);
                                         &:nth-child(1){
-                                            @include r(30%);
+                                            @include r(18%);
+                                        }
+                                        &:nth-child(4){
+                                            @include r(18%);
                                         }
                                     }
                                 }
