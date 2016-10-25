@@ -1,0 +1,75 @@
+@import "_base.scss";
+.wrapper{
+    .page{
+        &.gamePass{
+            .com_title{
+                background-image: url(../images/gamePass_title.png);
+                background-repeat: no-repeat;
+                background-size: auto getVW(454);
+                background-position: center bottom;
+
+                &:before{
+                    background-image: none;
+                }
+            }
+            .com_main{
+                .content{
+                    //width:478    
+                    .des{
+                        @include r;
+                        height: getVW(54);
+                        background-image: url(../images/gamePass_des.png);
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center center;
+                        margin-bottom: getVW(30);
+                        margin-top: getVW(30);
+                    }
+                    .word{
+                        @include r;
+                        @include fontvw(25,34,#414141,bolder);
+                        box-sizing: border-box;
+                        padding-left: getVW(25);
+                        padding-right: getVW(25);
+                        padding-bottom: getVW(25);
+                        margin-bottom: getVW(25);
+                        border-bottom: 1px solid #3d7e80;
+                        text-align: center;
+                    }
+                    .sword{
+                        @include r;
+                        @include fontvw(25,34,#414141,bolder);
+                        margin-bottom: getVW(25);
+                        text-align: center;
+                        .red{
+                            color: #db0303;
+                        }
+                    }
+                    .btnbox{
+                        @include r;
+                        width: getVW(353);
+                        margin-left: getVW(63);
+                        .backindex{
+                            @include r;
+                            height: getVW(96);
+                            background-image: url(../images/gamePass_btn1.png);
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: center center;
+                            margin-bottom: getVW(20);
+                        }
+                        .backgamelist{
+                            @include r;
+                            height: getVW(96);
+                            background-image: url(../images/gamePass_btn2.png);
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: center center;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}
