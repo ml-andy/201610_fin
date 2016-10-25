@@ -1,0 +1,66 @@
+@import "_base.scss";
+.wrapper{
+    .page{
+        &.game_list{
+            .com_title{
+                background-image: url(../images/game_list_title.png);
+                background-repeat: no-repeat;
+                background-size: auto getVW(453);
+                background-position: center bottom;
+            }
+            .swiper-container{
+                @include r;
+                height: getVW(566);
+                .next{
+                    @include artvw(100,100,0,50,0,-50);
+                    top: 50%;
+                    background-image: url(../images/game_list_arrow.png);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center center;
+                    z-index: 1;
+                    cursor: pointer;
+                }
+                .prev{
+                    @include altvw(100,100,0,50,0,-50);
+                    top: 50%;
+                    background-image: url(../images/game_list_arrow2.png);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center center;
+                    z-index: 1;
+                    cursor: pointer;
+                }
+                .swiper-wrapper{
+                    z-index: 0;
+                }
+                .swiper-slide{
+                    position: relative;
+                    background-image: url(../images/game_list_itembg.png);
+                    background-repeat: no-repeat;
+                    background-size: getVW(571) getVW(566);
+                    background-position: center center;
+                    text-align: center;
+                    .pic{
+                        width: getVW(571);
+                        height: getVW(566);
+                        display: inline-block;
+                        z-index: 0;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .gobtn{
+                        @include altvw(221,85,50,340,-110);
+                        left: 50%;
+                        background-image: url(../images/game_list_gobtn.png);
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center center;
+                    }
+                }
+            }
+        }
+    }
+}

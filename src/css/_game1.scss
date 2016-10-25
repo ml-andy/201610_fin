@@ -1,0 +1,59 @@
+@import "_base.scss";
+.wrapper{
+    .page{
+        &.game1{            
+            .info{
+                .main{
+                    background-image: url(../images/game_popup_content1.png);
+                }
+            }
+            .scoreboard{
+                @include alt(100%,auto);
+                @include fontvw(48,48,#000000,bolder);
+                pointer-events: none;
+                top: getVW(60);
+                text-align: center;
+                z-index: 1;
+                display: none;
+                .num{
+                    color: #fd0707;
+                }
+            }
+            #game1{
+                @include alt;
+                z-index: 0;
+            }
+        }
+    }
+}
+.failPopup{
+    @include flt;
+    background-color: rgba(0,0,0,0.8);
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    z-index: 8;
+    display: none;
+    .main{
+        @include altvw(585,1032,26,100);
+        background-image: url(../images/game_popup_over.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+        .again{
+            @include altvw(404,110,96,324);
+            background-image: url(../images/game_popup_over_btn1.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+            cursor: pointer;
+        }
+        .back{
+            @include altvw(404,110,96,445);
+            background-image: url(../images/game_popup_over_btn2.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+            cursor: pointer;
+        }
+    }
+}

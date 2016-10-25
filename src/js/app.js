@@ -120,7 +120,7 @@ var HeaderModel = function () {
 
         FB.init({
             appId      : '1259657327430006',
-            channelUrl : 'http://demo.fin2016-q4.homakimi-digital.com/',
+            channelUrl : 'http://www.heysong-fin.com.tw/fin2016_q4/',
             status     : true,
             xfbml      : true,
             cookie     : true
@@ -140,7 +140,8 @@ var HeaderModel = function () {
 
         this.menua = this.menu.find('.menua');
         this.menua.on('click', function (e) {
-            this.menuaClick($(e.currentTarget).attr('class').split('menua ')[1]);
+            // this.menuaClick($(e.currentTarget).attr('class').split('menua ')[1]);
+            this.menuaClick($(e.currentTarget).attr('class').replace('on','').split('menua ')[1].replace(' ',''),0);
         }.bind(this));
     }
 
@@ -169,15 +170,16 @@ var HeaderModel = function () {
                     break;
                 case 'm3':
                     setTrackButton('btn_m_rule');
-                    window.location.href = "about.html";
+                    window.location.href = "about.php";
                     break;
                 case 'm4':
                     setTrackButton('btn_m_prize');
-                    window.location.href = "award_info.html";
+                    window.location.href = "award_info.php";
                     break;
                 case 'm5':
                     setTrackButton('btn_m_winner');
-                    window.location.href = "award_list.html";
+                    alert('於105/11/16(三)公佈');
+                    //window.location.href = "award_list.php";
                     break;
                 case 'm6':
                     if (this.menubtn.hasClass('on')) setTrackButton('btn_m_share_fb');
@@ -196,7 +198,7 @@ var HeaderModel = function () {
                 case 'm7':
                     if (this.menubtn.hasClass('on')) setTrackButton('btn_m_game_menu');
                     else setTrackButton('btn_m_game');
-                    //window.location.href = "game_list.html";
+                    //window.location.href = "game_list.php";
                     alert('遊戲將於11/2正式上線');
                     break;
                 case 'm8':
@@ -212,7 +214,7 @@ var HeaderModel = function () {
                     if (this.menubtn.hasClass('on')) setTrackButton('btn_m_index_menu');
                     else setTrackButton('btn_m_index');
 
-                    window.location.href = "index.html";
+                    window.location.href = "index.php";
                     break;
             }
         }
@@ -403,13 +405,16 @@ var VerPopup = function () {
         value: function showverPopup(_t) {
             if (_t) {
                 setTrackPV('pv_m_country');
-                this.verPopup.fadeIn();
+                this.verPopup.fadeIn(function() {
+                    $.each($('.number'), function(i,v) {
+                        $(this).val(old_sn[i]).removeClass('error').removeClass('ok');
+                    });
+                });
             } else {
                 this.verPopup.fadeOut();
                 //window.location.href = "login_number_success.php";
 
 				if (Login_number_sned == 0) {
-
 					var options = {
 						type: 'post', 
 						url: '/inc/sn.php',

@@ -93,6 +93,11 @@ body{
                 &:before{
                     background-image: url(../images/menu_1.png);
                 }
+                &.on{
+                    &:before{
+                        background-image: url(../images/menu_1_1.png);
+                    }
+                }
             }
             &.m2{
                 &:before{
@@ -154,9 +159,51 @@ body{
     min-height: 100%;
     z-index: 1;
     background-color: #67b80c;
+    &.game{
+        height: 100%;
+        background-image: none;
+        background-color: #fff;
+    }
     .page{
         @include r;
         min-height: 100%;
+        &.game{
+            height: 100%;
+            .info{
+                @include flt;
+                z-index: 8;
+                background-color: rgba(0,0,0,0.8);
+                .main{
+                    @include amvw(585,726);
+                    margin-top: getVW(-26);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center center;
+                    z-index: 1;
+                    .startbtn{
+                        @include altvw(404,110,50,484,-202);
+                        left: 50%;
+                        background-image: url(../images/game_popup_startbtn.png);
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center center;
+                    }
+                }
+                .waterchild{
+                    @include albvw(288,268,50,0,-144);
+                    left: 50%;
+                    background-image: url(../images/game_popup_waterchild.png);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center center;
+                    z-index: 0;
+                }
+            }
+            .game_stage{
+                @include r;
+                min-height: 100%;
+            }
+        }
         .com_title{
             @include rvw(100,493);
             width: 100%;
@@ -243,4 +290,10 @@ body{
 
 //about
 @import "_about.scss";
+
+//game_list
+@import "_game_list.scss";
+
+//game1
+@import "_game1.scss";
 

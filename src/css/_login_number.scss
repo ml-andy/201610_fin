@@ -77,14 +77,14 @@
         background-size: contain;
         background-position: center getVW(53);
         .des{
-            @include altvw(394,100,104,202);
+            @include altvw(394,100,104,172);
             background-image: url(../images/login_number_verpopup_des.png);
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center center;
         }
         .bottle1{
-            @include altvw(96,331,93,396);
+            @include altvw(96,331,93,366);
             background-image: url(../images/login_number_verpopup_bottle1.png);
             background-repeat: no-repeat;
             background-size: contain;
@@ -92,7 +92,7 @@
             z-index: 1;
         }
         .icon{
-            @include altvw(96,154,255,573);
+            @include altvw(96,154,255,543);
             background-image: url(../images/login_number_verpopup_icon.png);
             background-repeat: no-repeat;
             background-size: contain;
@@ -100,7 +100,7 @@
             z-index: 0;
         }
         .bottle2{
-            @include altvw(118,351,400,386);
+            @include altvw(118,351,400,356);
             background-image: url(../images/login_number_verpopup_bottle2.png);
             background-repeat: no-repeat;
             background-size: contain;

@@ -19,25 +19,25 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('dist/css'))
 	.pipe($.connect.reload());
 });
-gulp.task('js', function () {
-	gulp.src('src/js/**/*.js')
-		.pipe($.plumber())
-		.pipe(gulp.dest('dist/js'))
-		.pipe($.connect.reload());
-});
-// gulp.task('js',function(){
-//     return gulp.src('src/js/**/*.js')
-//     	.pipe($.plumber())
-//     	.pipe($.sourcemaps.init())
-// 		.pipe($.babel({
-// 			presets: ['es2015']
-// 		}))
-// 		.pipe($.concat("app.js"))
-//     	.pipe($.uglify())
-// 	    .pipe($.sourcemaps.write())
-// 	    .pipe(gulp.dest('dist/js'))
+// gulp.task('js', function () {
+// 	gulp.src('src/js/**/*.js')
+// 		.pipe($.plumber())
+// 		.pipe(gulp.dest('dist/js'))
 // 		.pipe($.connect.reload());
 // });
+gulp.task('js',function(){
+    return gulp.src('src/js/**/game.js')
+    	.pipe($.plumber())
+    	.pipe($.sourcemaps.init())
+		.pipe($.babel({
+			presets: ['es2015']
+		}))
+		.pipe($.concat("game.js"))
+    	.pipe($.uglify())
+	    .pipe($.sourcemaps.write())
+	    .pipe(gulp.dest('dist/js'))
+		.pipe($.connect.reload());
+});
 gulp.task('connect', function() {
   $.connect.server({
   	root: 'dist/',
@@ -83,7 +83,7 @@ gulp.task('del',function(){
 //AddListener
 gulp.task('default',['connect'], function() {
 	gulp.watch(['src/css/*.scss'],['sass']);
-	gulp.watch(['src/js/**/*.js'],['js']);
+	gulp.watch(['src/js/**/game.js'],['js']);
 	gulp.watch(['src/lib/**/*.js'],['libjs']);
 	gulp.watch(['src/images/*.jpg'],['imageminJPG']);
 	gulp.watch(['src/images/*.png'],['imageminPNG']);

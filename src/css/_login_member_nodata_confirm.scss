@@ -35,8 +35,10 @@
                             .right{
                                 @include r;
                                 @include fontvw(25,30,#1c56ac);
+                                min-height: getVW(30);
                                 box-sizing: border-box;
                                 padding-left: getVW(180);
+                                word-wrap: break-word;
                             }
                         }
                     }
