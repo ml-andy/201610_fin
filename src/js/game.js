@@ -117,45 +117,51 @@ class Game {
 }
 class GameModel {
     constructor() {
+        this.page = $('.page');
+        this.info = this.page.find('.info');
+        this.scoreboard = this.page.find('.scoreboard');
+        this.clock = this.page.find('.clock');
+        this.timer = this.clock.find('.timer'); 
+        this.score = this.scoreboard.find('.num');
+        this.startbtn = this.info.find('.startbtn');
         
+
+        this.failPopup = $('.failPopup');
+        this.again = this.failPopup.find('.again');
+        this.back = this.failPopup.find('.back');
+        
+        this.back.on('click',function(){
+            window.location.href="game_list.html";
+        }.bind(this));
         
     }
 }
 class Game1 {
 	constructor() {
-		this.ready();
-		this.page = $('.page.game1');
-        this.info = this.page.find('.info');
-        this.scoreboard = this.page.find('.scoreboard');
-        this.score = this.scoreboard.find('.num');
-        this.startbtn = this.info.find('.startbtn');
-        this.startbtn.on('click',function(){
+        this.GameModel = new GameModel();
+        this.GameModel.startbtn.on('click',function(){
+            this.Game1Start();
+        }.bind(this));
+        this.GameModel.again.on('click',function(){
+            this.GameModel.failPopup.fadeOut();
             this.Game1Start();
         }.bind(this));
 
-        this.failPopup = $('.failPopup');
-        this.again = this.failPopup.find('.again');
-        this.back = this.failPopup.find('.back');
-        this.again.on('click',function(){
-            this.failPopup.fadeOut();
-            this.Game1Start();
-        }.bind(this));
-        this.back.on('click',function(){
-            window.location.href="game_list.html";
-        }.bind(this));
 
         if (window.DeviceOrientationEvent) {
             window.addEventListener('deviceorientation', function(eventData) {
                 this.windowDeviceEvent(eventData);
             }.bind(this));
         }
+
+        this.ready();
 	}
     ready() {
         console.log('game1 init');
-        this.fps = 60;
-        this.endTimeout = 30000;
-        this.carTime = 2000;
-        this.bgspeed = -15;
+        this.fps = 30;
+        this.endTimeout = 30;
+        this.nowendTime = this.endTimeout;
+        this.bgspeed = -30;
         this.waterchildspeed = 15;
         this.passCar = 0;
         this.successCarNum = 10;
@@ -220,8 +226,11 @@ class Game1 {
     }
     Game1Start(){
         this.passCar = 0;
-        this.info.fadeOut();
-        this.scoreboard.fadeIn();
+        this.nowendTime = this.endTimeout;
+        this.GameModel.timer.html(this.nowendTime);
+        this.GameModel.info.fadeOut();
+        this.GameModel.scoreboard.fadeIn();
+        this.GameModel.clock.fadeIn();
         this.setWaterchildPosition();
         this.GameCarIint();
         this.start = true;
@@ -229,9 +238,7 @@ class Game1 {
             this.GameRandomCar();
         }.bind(this),1500);
 
-        setTimeout(function(){
-            this.Game1End();
-        }.bind(this),this.endTimeout);
+        this.countDown();
     }
     Game1End() {
         clearTimeout(this.hitTimeout);
@@ -240,20 +247,23 @@ class Game1 {
         if(this.passCar >= this.successCarNum) gamePasses();
         else{
             console.log('Game over');
-            this.failPopup.fadeIn();
+            this.GameModel.failPopup.fadeIn();
         }
     }
-    
+    countDown() {
+        setTimeout(function(){
+            this.nowendTime -= 1;
+            this.GameModel.timer.html(this.nowendTime);
+            if(this.nowendTime >0) this.countDown();
+            else this.Game1End();
+        }.bind(this),1000);
+    }
     GameRandomCar() {
         this.GameCarIint();
         this.random = Math.round(Math.random()*1);
         
         if(this.random>0) this.carLspeed = this.bgspeed * 9 / 10 * -1;
         else  this.carRspeed = this.bgspeed * 1.2 * -1;
-
-        // setTimeout(function(){
-        //     if(this.start) this.GameRandomCar();
-        // }.bind(this),this.carTime);
     }
     StageListenter(){
         if(this.start){
@@ -283,7 +293,6 @@ class Game1 {
             for(var i=0; i< this.waterchildPointList.length; i++){
                 var pt = this.carL.globalToLocal(this.waterchildPointList[i]._x,this.waterchildPointList[i]._y);
                 if(this.carL.hitTest(pt.x,pt.y)){
-                    console.log("I'm hit carL!");
                     this.boom.x=this.waterchildPointList[i]._x;
                     this.boom.y=this.waterchildPointList[i]._y;
                     this.afterHit();
@@ -291,7 +300,6 @@ class Game1 {
                 }
                 var pt2 = this.carR.globalToLocal(this.waterchildPointList[i]._x,this.waterchildPointList[i]._y);
                 if(this.carR.hitTest(pt2.x,pt2.y)){
-                    console.log("I'm hit carR!");
                     this.boom.x=this.waterchildPointList[i]._x;
                     this.boom.y=this.waterchildPointList[i]._y;
                     this.afterHit();
@@ -300,7 +308,7 @@ class Game1 {
             }
 
             //score
-            this.score.html(this.passCar);
+            this.GameModel.score.html(this.passCar);
         }
         
         this.stage.update();
@@ -346,6 +354,73 @@ class Game1 {
             }
         ];
     }
+}
+class Game2 {
+	constructor() {
+        this.GameModel = new GameModel();
+		this.GameModel.startbtn.on('click',function(){
+            this.GameStart();
+        }.bind(this));
+        this.GameModel.again.on('click',function(){
+            this.GameModel.failPopup.fadeOut();
+            this.GameStart();
+        }.bind(this));
+        
+        this.ready();
+	}
+    ready() {
+        console.log('game2 init');
+        this.fps = 30;
+        this.endTimeout = 30;
+        this.nowendTime = this.endTimeout;
+        this.passNum = 0;
+        this.successCarNum = 10;
+        this.start = false;
+        this.canvas = document.getElementById("game2");
+        this.stage = new createjs.Stage(this.canvas);
+
+        createjs.Ticker.setFPS(this.fps);
+		createjs.Ticker.addEventListener("tick", this.StageListenter.bind(this));
+
+    }
+    GameStart(){
+        this.nowendTime = this.endTimeout;
+        this.GameModel.timer.html(this.nowendTime);
+        this.GameModel.info.fadeOut();
+        this.GameModel.scoreboard.fadeIn();
+        this.GameModel.clock.fadeIn();
+        this.start = true;
+        
+        this.countDown();
+    }
+    GameEnd() {
+        this.start = false;
+
+        if(this.passNum >= this.successCarNum) gamePasses();
+        else{
+            console.log('Game over');
+            this.GameModel.failPopup.fadeIn();
+        }
+    }
+    countDown() {
+        setTimeout(function(){
+            this.nowendTime -= 1;
+            this.GameModel.timer.html(this.nowendTime);
+            if(this.nowendTime >0) this.countDown();
+            else this.GameEnd();
+        }.bind(this),1000);
+    }
+    
+    StageListenter(){
+        if(this.start){
+            
+            //score
+            this.score.html(this.passNum);
+        }
+        
+        this.stage.update();
+    }
+    
 }
 
 $(function() {
