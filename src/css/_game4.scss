@@ -1,0 +1,121 @@
+@import "_base.scss";
+.wrapper{
+    overflow: hidden;
+    .page{
+        &.game4{            
+            .info{
+                .main{
+                    background-image: url(../images/game_popup_content4.png);
+                }
+            }
+            .game_stage{
+                overflow: hidden;
+            }
+            .scoreboard{
+                @include alt(100%,auto);
+                @include fontvw(48,48,#fff,bolder);
+                pointer-events: none;
+                top: getVW(60);
+                text-align: center;
+                z-index: 4;
+                display: none;
+                .num{
+                    color: #fff;
+                }
+            }
+            .clock{
+                @include artvw(154,176,25,135);
+                background-image: url(../images/game_clock.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+                z-index: 3;
+                pointer-events: none;
+                display: none;
+                .timer{
+                    @include am(auto,auto);
+                    @include fontvw(74,74,#e70909,bolder);
+                    text-align: center;
+                }
+            }
+            .itembox{
+                @include albvw(982,184,0,537);
+                left: 100%;
+                z-index: 2;
+                .item{
+                    @include rvw(252,184);
+                    margin-right: getVW(113);
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center center;
+                    &:last-child{
+                        margin-right: 0;
+                    }
+                    &.goal_1{
+                        background-image: url(../images/game4_item1.png);
+                    }
+                    &.goal_2{
+                        background-image: url(../images/game4_item2.png);
+                        &.touch{
+                            background-image: none;
+                        }
+                    }
+                    &.goal_3{
+                        background-image: url(../images/game4_item3.png);
+                    }
+                }
+            }
+            .icon{
+                @include albvw(76,128,185,260);
+                background-image: url(../images/game4_icon.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center center;
+                z-index: 1;
+                display: none;
+                &.on{
+                    display: block;
+                }
+            }
+            .bg{
+                @include alt;
+                background-image: url(../images/game4_bg.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center bottom;
+                z-index: 0;
+            }
+        }
+    }
+}
+.failPopup{
+    @include flt;
+    background-color: rgba(0,0,0,0.8);
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    z-index: 8;
+    display: none;
+    .main{
+        @include altvw(585,1032,26,100);
+        background-image: url(../images/game_popup_over.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+        .again{
+            @include altvw(404,110,96,324);
+            background-image: url(../images/game_popup_over_btn1.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+            cursor: pointer;
+        }
+        .back{
+            @include altvw(404,110,96,445);
+            background-image: url(../images/game_popup_over_btn2.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+            cursor: pointer;
+        }
+    }
+}

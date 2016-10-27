@@ -619,6 +619,107 @@ class Game3 {
     }
     
 }
+class Game4 {
+	constructor() {
+        this.GameModel = new GameModel();
+		this.GameModel.startbtn.on('click',function(){
+            this.GameStart();
+        }.bind(this));
+        this.GameModel.again.on('click',function(){
+            this.GameModel.failPopup.fadeOut();
+            this.GameStart();
+        }.bind(this));
+        
+        this.ready();
+	}
+    ready() {
+        console.log('game4 init');
+        this.endTimeout = 30;
+        this.nowendTime = this.endTimeout;
+        this.passNum = 0;
+        this.successCarNum = 10;
+        this.start = false;
+
+        this.page = $('.page');
+        this.itembox = this.page.find('.itembox');
+        this.item = this.itembox.find('.item');
+        this.icon = this.page.find('.icon');
+        this.itemboxX=0;
+        this.itemboxMin=( $(window).width() + this.item.outerWidth(true)) * -1;
+        this.itemboxOrg = $(window).width() * -1;
+        this.speed = 1.5;
+        this.iconTimeout='';
+
+        this.item.on('touchstart',function(e){
+            $(e.currentTarget).addClass('touch');
+            if($(e.currentTarget).hasClass('goal_2')){
+                this.passNum +=1;
+                this.GameModel.score.html(this.passNum);
+            }else{
+                clearTimeout(this.iconTimeout);
+                this.icon.addClass('on');
+                this.iconTimeout = setTimeout(function(){
+                    this.icon.removeClass('on');
+                }.bind(this),1000);
+            }
+        }.bind(this));
+    }
+    GameStart(){
+        this.nowendTime = this.endTimeout;
+        this.GameModel.timer.html(this.nowendTime);
+        this.GameModel.info.fadeOut();
+        this.GameModel.scoreboard.fadeIn();
+        this.GameModel.clock.fadeIn();
+        this.start = true;
+        this.canshake = true;
+        this.passNum = 0;
+        this.GameModel.score.html(this.passNum);
+        this.countDown();
+        
+        this.itembox.attr('style','');
+        for(var i=0; i<this.item.length;i++){
+            var random = Math.round(Math.random()*2)+1;
+            this.item.eq(i).attr('class','item goal_'+random);
+        }
+
+        this.SushiGo();
+    }
+    SushiGo() {
+        this.itemboxX-=this.speed;
+        if(this.itemboxX <= this.itemboxMin){
+            var random = Math.round(Math.random()*6)+1;
+            if(random==4 || random==6) random=1;
+            else if(random==5 || random==7) random=3;
+            this.itembox.find('.item').first().attr('class','item goal_'+random);
+            this.itembox.find('.item').last().after(this.itembox.find('.item').first());
+            this.itemboxX = this.itemboxOrg;
+        }
+        this.itembox.css('transform','translateX('+this.itemboxX+'px)');
+        if(this.start){
+            setTimeout(function(){
+                this.SushiGo();
+            }.bind(this),1);
+        }
+    }
+    GameEnd() {
+        this.start = false;
+
+        if(this.passNum >= this.successCarNum) gamePasses();
+        else{
+            console.log('Game over');
+            this.GameModel.failPopup.fadeIn();
+        }
+    }
+    countDown() {
+        setTimeout(function(){
+            this.nowendTime -= 1;
+            this.GameModel.timer.html(this.nowendTime);
+            if(this.nowendTime >0) this.countDown();
+            else this.GameEnd();
+        }.bind(this),1000);
+    }
+    
+}
 class Game5 {
 	constructor() {
         this.GameModel = new GameModel();
