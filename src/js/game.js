@@ -370,18 +370,121 @@ class Game2 {
 	}
     ready() {
         console.log('game2 init');
-        this.fps = 30;
         this.endTimeout = 30;
         this.nowendTime = this.endTimeout;
         this.passNum = 0;
         this.successCarNum = 10;
         this.start = false;
-        this.canvas = document.getElementById("game2");
-        this.stage = new createjs.Stage(this.canvas);
+        
+        this.wrp = $('.bg');
+        this.ball = $('.ball');
+        this.target = $('.gamebox');
+        this.targetX1 = this.target.offset().left;
+        this.targetX2 = this.target.offset().left + this.target.width()/2;
+        this.targetY1 = this.target.offset().top - this.ball.height()*4/5;
+        this.targetY2 = this.target.offset().top;        
+        this.ballTime = '';
+        this.t = 0;
+        this.ctrl = false;
+        this.y1 = 0;
+        this.y2 = 0;
+        this.x1 = 0;
+        this.x2 = 0;
 
-        createjs.Ticker.setFPS(this.fps);
-		createjs.Ticker.addEventListener("tick", this.StageListenter.bind(this));
+        var edown = 'touchstart',
+            eup = 'touchend',
+            emove = 'touchmove';
 
+        this.r = 0.5; 
+        this.del = 1;//阻力
+        this.fps = 20; //fps
+    
+        // o.ball
+        this.ball.on(edown,function(e){
+            e = e.originalEvent.touches[0];
+            $('.wrapper').on(emove,this.o_ball_move.bind(this));
+            this.ctrl = true;
+            this.t = 0;
+            this.y1 = e.pageY;
+            this.y2 = e.pageY;
+            this.x1 = e.pageX;
+            this.x2 = e.pageX;
+            this.ballTime = setInterval(function(){
+                this.t +=1;
+            }.bind(this),1);
+        }.bind(this));
+        $('body').on(eup,function(){
+            $('.wrapper').off(emove,this.o_ball_move.bind(this));
+            if(this.ctrl) this.ballEnd();
+        }.bind(this));
+        $('body').on(edown,this.bodytouch.bind(this));
+    }
+     o_ball_move(e){
+        e = e.originalEvent.touches[0];
+        //y
+        if(e.pageY< $(window).height()/2){
+            // this.ballinit();
+            return;
+        }
+        this.ballbottom = this.wrp.height() - e.pageY - this.ball.height() / 2;
+        this.y2 = e.pageY;
+        this.ball.css('bottom',this.ballbottom);
+
+        //x
+        this.ballmleft = this.wrp.width() - e.pageX - this.ball.width();
+        this.x2 = e.pageX;
+        this.ball.css('margin-left',this.ballmleft*-1);
+    }
+    ballEnd(){
+        if(this.y2 == this.y1) return
+        this.ctrl = false;
+        clearInterval(this.ballTime);
+        
+        //y
+        var s = this.y2 - this.y1;
+        var a = 2 * s / this.t / this.t;
+        var f = a;
+        this.v0 = a * this.t;
+        this.t2 = Math.abs(Math.floor(this.v0 * 1 / this.r));
+        this.s2 = this.v0 * this.t2 * -1 * this.del;
+        this.a2 = Math.sqrt(this.s2 * 2);
+        var goal = this.ballbottom + this.s2;
+        if(goal > this.wrp.height() + this.ball.height()) goal = this.wrp.height() + this.ball.height();
+        else if(goal < 0) goal = 0;
+
+        //x
+        var ss = this.x2 - this.x1;
+        var aa = 2 * ss / this.t / this.t;
+        var ff = aa;
+        this.v0x = aa * this.t;
+        this.t2x = Math.floor(this.v0x * 1 / this.r);
+        this.s2x = this.v0x * this.t2 * -1 * this.del;
+        this.a2x = Math.sqrt(this.s2x * 2);
+        var goalx = this.ballmleft + this.s2x;
+        if(goalx > this.wrp.width()/2) goalx = this.wrp.width()/2;
+        else if(goalx < this.wrp.width()/2*-1) goalx = this.wrp.width()/2*-1;
+        this.ball.animate({'bottom':goal,'margin-left':goalx*-1,'width':'30vw'},this.t2 * this.fps,'easeOutQuart',function(){this.checkball();}.bind(this));
+        
+    }
+    checkball(){
+        if(
+            this.ball.offset().left >= this.targetX1 && this.ball.offset().left <= this.targetX2 &&
+            this.ball.offset().top >= this.targetY1 && this.ball.offset().top <= this.targetY2
+        ){
+            this.passNum+=1;
+            this.GameModel.score.html(this.passNum);
+        }
+        setTimeout(function(){
+            this.ballinit();
+        }.bind(this),300);
+    }
+    ballinit(){
+        var random = Math.round(Math.random()*2) +1;
+        this.ball.attr('class','ball b'+random);
+        this.ball.attr('style','');
+    }
+    bodytouch(e){
+        if(this.start) e.preventDefault();
     }
     GameStart(){
         this.nowendTime = this.endTimeout;
@@ -390,7 +493,9 @@ class Game2 {
         this.GameModel.scoreboard.fadeIn();
         this.GameModel.clock.fadeIn();
         this.start = true;
-        
+        this.ballinit();
+        this.passNum = 0;
+        this.GameModel.score.html(this.passNum);
         this.countDown();
     }
     GameEnd() {
@@ -411,14 +516,268 @@ class Game2 {
         }.bind(this),1000);
     }
     
-    StageListenter(){
-        if(this.start){
-            
-            //score
-            this.score.html(this.passNum);
-        }
+}
+class Game3 {
+	constructor() {
+        this.GameModel = new GameModel();
+		this.GameModel.startbtn.on('click',function(){
+            this.GameStart();
+        }.bind(this));
+        this.GameModel.again.on('click',function(){
+            this.GameModel.failPopup.fadeOut();
+            this.GameStart();
+        }.bind(this));
         
-        this.stage.update();
+        this.ready();
+	}
+    ready() {
+        console.log('game3 init');
+        this.endTimeout = 30;
+        this.nowendTime = this.endTimeout;
+        this.passNum = 0;
+        this.successCarNum = 10;
+        this.start = false;
+        this.canshake = false;
+        this.ball = $('.ball');
+
+        this.SHAKE_THRESHOLD = 2000;
+        this.last_update = new Date().getTime();
+        this.x = this.y = this.z = this.last_x = this.last_y = this.last_z = 0;
+        // this.media;
+
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('devicemotion', function(eventData) {
+                this.windowDeviceEvent(eventData);
+            }.bind(this));
+        }
+    }
+    windowDeviceEvent(eventData) {
+        if(this.start && this.canshake){
+            var acceleration = eventData.accelerationIncludingGravity;
+            var curTime = new Date().getTime();
+            if ((curTime - this.last_update) > 100) {
+                var diffTime = curTime - this.last_update;
+                this.last_update = curTime;
+                this.x = acceleration.x;
+                this.y = acceleration.y;
+                this.z = acceleration.z;
+                var speed = Math.abs(this.x + this.y + this.z - this.last_x - this.last_y - this.last_z) / diffTime * 10000;
+
+                if (speed > this.SHAKE_THRESHOLD) {
+                    this.canshake = false;
+                    this.passNum +=1;
+                    this.GameModel.score.html(this.passNum);
+                    this.ball.addClass('on');
+
+                    setTimeout(function(){
+                        this.canshake = true;
+                        this.ball.removeClass('on');
+                    }.bind(this),1000);
+                }else if(speed >= this.SHAKE_THRESHOLD/2 && speed <= this.SHAKE_THRESHOLD){
+                    this.canshake = false;
+                    this.ball.addClass('off');
+
+                    setTimeout(function(){
+                        this.canshake = true;
+                        this.ball.removeClass('off');
+                    }.bind(this),500);
+                }
+                this.last_x = this.x;
+                this.last_y = this.y;
+                this.last_z = this.z;
+            }
+        }        
+    }
+    GameStart(){
+        this.nowendTime = this.endTimeout;
+        this.GameModel.timer.html(this.nowendTime);
+        this.GameModel.info.fadeOut();
+        this.GameModel.scoreboard.fadeIn();
+        this.GameModel.clock.fadeIn();
+        this.start = true;
+        this.canshake = true;
+        this.passNum = 0;
+        this.GameModel.score.html(this.passNum);
+        this.countDown();
+    }
+    GameEnd() {
+        this.start = false;
+
+        if(this.passNum >= this.successCarNum) gamePasses();
+        else{
+            console.log('Game over');
+            this.GameModel.failPopup.fadeIn();
+        }
+    }
+    countDown() {
+        setTimeout(function(){
+            this.nowendTime -= 1;
+            this.GameModel.timer.html(this.nowendTime);
+            if(this.nowendTime >0) this.countDown();
+            else this.GameEnd();
+        }.bind(this),1000);
+    }
+    
+}
+class Game5 {
+	constructor() {
+        this.GameModel = new GameModel();
+		this.GameModel.startbtn.on('click',function(){
+            this.GameStart();
+        }.bind(this));
+        this.GameModel.again.on('click',function(){
+            this.GameModel.failPopup.fadeOut();
+            this.GameStart();
+        }.bind(this));
+        
+        this.ready();
+	}
+    ready() {
+        console.log('game5 init');
+        this.endTimeout = 30;
+        this.nowendTime = this.endTimeout;
+        this.passNum = 0;
+        this.successCarNum = 10;
+        this.start = false;
+        
+        this.wrp = $('.bg');
+        this.ball = $('.ball');
+        this.target = $('.gamebox');
+        this.targetX1 = this.target.offset().left;
+        this.targetX2 = this.target.offset().left + this.target.width()*4/5;
+        this.targetY1 = this.target.offset().top - this.ball.height()*2/3;
+        this.targetY2 = this.target.offset().top + this.target.height()/2;        
+        this.ballTime = '';
+        this.t = 0;
+        this.ctrl = false;
+        this.y1 = 0;
+        this.y2 = 0;
+        this.x1 = 0;
+        this.x2 = 0;
+
+        var edown = 'touchstart',
+            eup = 'touchend',
+            emove = 'touchmove';
+
+        this.r = 0.5; 
+        this.del = 1;//阻力
+        this.fps = 20; //fps
+    
+        // o.ball
+        this.ball.on(edown,function(e){
+            e = e.originalEvent.touches[0];
+            $('.wrapper').on(emove,this.o_ball_move.bind(this));
+            this.ctrl = true;
+            this.t = 0;
+            this.y1 = e.pageY;
+            this.y2 = e.pageY;
+            this.x1 = e.pageX;
+            this.x2 = e.pageX;
+            this.ballTime = setInterval(function(){
+                this.t +=1;
+            }.bind(this),1);
+        }.bind(this));
+        $('body').on(eup,function(){
+            $('.wrapper').off(emove,this.o_ball_move.bind(this));
+            if(this.ctrl) this.ballEnd();
+        }.bind(this));
+        $('body').on(edown,this.bodytouch.bind(this));
+    }
+     o_ball_move(e){
+        e = e.originalEvent.touches[0];
+        //y
+        if(e.pageY< $(window).height()/2){
+            // this.ballinit();
+            return;
+        }
+        this.ballbottom = this.wrp.height() - e.pageY - this.ball.height() / 2;
+        this.y2 = e.pageY;
+        this.ball.css('bottom',this.ballbottom);
+
+        //x
+        this.ballmleft = this.wrp.width() - e.pageX - this.ball.width();
+        this.x2 = e.pageX;
+        this.ball.css('margin-left',this.ballmleft*-1);
+    }
+    ballEnd(){
+        if(this.y2 == this.y1) return
+        this.ctrl = false;
+        clearInterval(this.ballTime);
+        
+        //y
+        var s = this.y2 - this.y1;
+        var a = 2 * s / this.t / this.t;
+        var f = a;
+        this.v0 = a * this.t;
+        this.t2 = Math.abs(Math.floor(this.v0 * 1 / this.r));
+        this.s2 = this.v0 * this.t2 * -1 * this.del;
+        this.a2 = Math.sqrt(this.s2 * 2);
+        var goal = this.ballbottom + this.s2;
+        if(goal > this.wrp.height() + this.ball.height()) goal = this.wrp.height() + this.ball.height();
+        else if(goal < 0) goal = 0;
+
+        //x
+        var ss = this.x2 - this.x1;
+        var aa = 2 * ss / this.t / this.t;
+        var ff = aa;
+        this.v0x = aa * this.t;
+        this.t2x = Math.floor(this.v0x * 1 / this.r);
+        this.s2x = this.v0x * this.t2 * -1 * this.del;
+        this.a2x = Math.sqrt(this.s2x * 2);
+        var goalx = this.ballmleft + this.s2x;
+        if(goalx > this.wrp.width()/2) goalx = this.wrp.width()/2;
+        else if(goalx < this.wrp.width()/2*-1) goalx = this.wrp.width()/2*-1;
+        this.ball.animate({'bottom':goal,'margin-left':goalx*-1,'width':'30vw'},this.t2 * this.fps,'easeOutQuart',function(){this.checkball();}.bind(this));
+        
+    }
+    checkball(){
+        if(
+            this.ball.offset().left >= this.targetX1 && this.ball.offset().left <= this.targetX2 &&
+            this.ball.offset().top >= this.targetY1 && this.ball.offset().top <= this.targetY2
+        ){
+            this.passNum+=1;
+            this.GameModel.score.html(this.passNum);
+        }
+        setTimeout(function(){
+            this.ballinit();
+        }.bind(this),300);
+    }
+    ballinit(){
+        var random = Math.round(Math.random()*2) +1;
+        this.ball.attr('class','ball b'+random);
+        this.ball.attr('style','');
+    }
+    bodytouch(e){
+        if(this.start) e.preventDefault();
+    }
+    GameStart(){
+        this.nowendTime = this.endTimeout;
+        this.GameModel.timer.html(this.nowendTime);
+        this.GameModel.info.fadeOut();
+        this.GameModel.scoreboard.fadeIn();
+        this.GameModel.clock.fadeIn();
+        this.start = true;
+        this.ballinit();
+        this.passNum = 0;
+        this.GameModel.score.html(this.passNum);
+        this.countDown();
+    }
+    GameEnd() {
+        this.start = false;
+
+        if(this.passNum >= this.successCarNum) gamePasses();
+        else{
+            console.log('Game over');
+            this.GameModel.failPopup.fadeIn();
+        }
+    }
+    countDown() {
+        setTimeout(function(){
+            this.nowendTime -= 1;
+            this.GameModel.timer.html(this.nowendTime);
+            if(this.nowendTime >0) this.countDown();
+            else this.GameEnd();
+        }.bind(this),1000);
     }
     
 }

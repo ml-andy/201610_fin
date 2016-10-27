@@ -2,10 +2,10 @@
 .wrapper{
     overflow: hidden;
     .page{
-        &.game2{            
+        &.game5{            
             .info{
                 .main{
-                    background-image: url(../images/game_popup_content2.png);
+                    background-image: url(../images/game_popup_content5.png);
                 }
             }
             .game_stage{
@@ -13,11 +13,11 @@
             }
             .scoreboard{
                 @include alt(100%,auto);
-                @include fontvw(48,48,#000000,bolder);
+                @include fontvw(48,48,#fff,bolder);
                 pointer-events: none;
                 top: getVW(60);
                 text-align: center;
-                z-index: 1;
+                z-index: 4;
                 display: none;
                 .num{
                     color: #fd0707;
@@ -39,33 +39,24 @@
                 }
             }
             .gamebox{
-                @include altvw(503,273,50,190,-251);
-                left: 50%;
-                background-image: url(../images/game2_box.png);
+                @include altvw(358,225,148,24);
+                background-image: url(../images/game5_gamebox.jpg);
                 background-repeat: no-repeat;
                 background-size: contain;
                 background-position: center center;
                 z-index: 1;
             }
             .ball{
-                @include albvw(329,317,150,35);
+                @include albvw(257,343,186,35);
+                background-image: url(../images/game5_item.png);
                 background-repeat: no-repeat;
                 background-size: contain;
                 background-position: center center;
                 z-index: 2;
-                &.b1{
-                    background-image: url(../images/game2_item.png);
-                }
-                &.b2{
-                    background-image: url(../images/game2_item2.png);
-                }
-                &.b3{
-                    background-image: url(../images/game2_item3.png);
-                }
             }
             .bg{
                 @include alt;
-                background-image: url(../images/game2_bg.jpg);
+                background-image: url(../images/game5_bg.jpg);
                 background-repeat: no-repeat;
                 background-size: cover;
                 background-position: center top;
