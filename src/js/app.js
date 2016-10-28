@@ -472,7 +472,7 @@ var GamePass = function GamePass() {
     this.gameNum = getUrlVars()['game'];
     if(this.gameNum==1) this.gameWord = '研究指出在口渴時，大腦處理口渴訊息佔用了大部分資源，在補水後就能得到釋放，上班族進而加快工作效率唷！';
     else if(this.gameNum==2) this.gameWord = '1小時的洗衣、曬衣過程，能幫助身體消耗78大卡，也等於作了100下仰臥起坐，做家事讓身體動一動，也要記得隨時補水喔！';
-    else if(this.gameNum==3) this.gameWord = '乒乓球其實比你想像的累！除了可鍛煉全身肌肉，還能提高反應力。運動別忘了適當休息，更要記得時補充流失的水份唷！';
+    else if(this.gameNum==3) this.gameWord = '乒乓球其實比你想像的累！除了可鍛鍊全身肌肉，還能提高反應力。運動別忘了適當休息，更要記得時補充流失的水份唷！';
     else if(this.gameNum==4) this.gameWord = '運動或戶外活動前兩小時，分階段補充500至800毫升的水，能讓身體有足夠的水份應付之後的消耗唷！';
     else if(this.gameNum==5) this.gameWord = '補水的目的不只是解渴，還能透過水循環讓代謝活絡，適時補充水份能幫助身體將廢物排出體外！';
     else this.gameWord = '研究指出在口渴時，大腦處理口渴訊息佔用了大部分資源，在補水後就能得到釋放，上班族進而加快工作效率唷！';

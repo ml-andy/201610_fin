@@ -1,16 +1,42 @@
 ﻿class HeaderModel {
     constructor() {
+        // this.header = $('.header');
+        // this.menu = $('.menu');
+
+        // this.menubtn = this.header.find('.menubtn');
+        // this.menubtn.on('click',function(){
+        //     if(this.menubtn.hasClass('on')) this.openmenu(false);
+        //     else this.openmenu(true);
+        // }.bind(this));
+
+        // this.menua = this.menu.find('.menua');
+        // this.menua.on('click',function(e){
+        //     this.menuaClick($(e.currentTarget).attr('class').replace('on','').split('menua ')[1].replace(' ',''),0);
+        // }.bind(this));
+
+        FB.init({
+            appId      : '1259657327430006',
+            channelUrl : 'http://www.heysong-fin.com.tw/fin2016_q4/',
+            status     : true,
+            xfbml      : true,
+            cookie     : true
+        });
+
         this.header = $('.header');
         this.menu = $('.menu');
 
         this.menubtn = this.header.find('.menubtn');
-        this.menubtn.on('click',function(){
-            if(this.menubtn.hasClass('on')) this.openmenu(false);
-            else this.openmenu(true);
+        this.menubtn.on('click', function () {
+            if (this.menubtn.hasClass('on')) this.openmenu(false);
+            else {
+                this.openmenu(true);
+                setTrackPV('pv_m_menu');
+            }
         }.bind(this));
 
         this.menua = this.menu.find('.menua');
-        this.menua.on('click',function(e){
+        this.menua.on('click', function (e) {
+            // this.menuaClick($(e.currentTarget).attr('class').split('menua ')[1]);
             this.menuaClick($(e.currentTarget).attr('class').replace('on','').split('menua ')[1].replace(' ',''),0);
         }.bind(this));
     }
@@ -26,32 +52,60 @@
     menuaClick(menulink){
         switch (menulink) {
             case 'm1':
-                window.location.href="login_member.php";
+                setTrackButton('btn_m_sign');
+                window.location.href = "login_member.php";
                 break;
             case 'm2':
-                window.location.href="inquire.php";
+                setTrackButton('btn_m_inquire');
+                window.location.href = "inquire.php";
                 break;
             case 'm3':
-                window.location.href="about.html";
+                setTrackButton('btn_m_rule');
+                window.location.href = "about.php";
                 break;
             case 'm4':
-                window.location.href="award_info.html";
+                setTrackButton('btn_m_prize');
+                window.location.href = "award_info.php";
                 break;
             case 'm5':
-                window.location.href="award_list.html";
+                setTrackButton('btn_m_winner');
+                alert('於105/11/16(三)公佈');
+                //window.location.href = "award_list.php";
                 break;
             case 'm6':
-                console.log('share fb');
+                if (this.menubtn.hasClass('on')) setTrackButton('btn_m_share_fb');
+                else setTrackButton('btn_m_share_fb2');
+
+                //void(window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href), 'share', 'width=600,height=400'));
+                FB.ui({             
+                    method: 'feed',
+                    display:"popup",
+                    link: 'http://www.heysong-fin.com.tw/fin2016_q4'
+                }, function(response) {
+
+                });
+
                 break;
             case 'm7':
-                window.location.href="game_list.html";
-                // alert('遊戲將於11/2正式上線');
+                if (this.menubtn.hasClass('on')) setTrackButton('btn_m_game_menu');
+                else setTrackButton('btn_m_game');
+                //window.location.href = "game_list.php";
+                alert('遊戲將於11/2正式上線');
                 break;
             case 'm8':
-                window.location.href="login_number.php";
+                if (this.menubtn.hasClass('on')) setTrackButton('btn_m_go_menu');
+                else {
+                    if ($('.page').hasClass('index')) setTrackButton('btn_m_go');
+                    else setTrackButton('btn_m_ticket');
+                }
+
+                window.location.href = "login_number.php";
                 break;
             case 'm9':
-                window.location.href="index.html";
+                if (this.menubtn.hasClass('on')) setTrackButton('btn_m_index_menu');
+                else setTrackButton('btn_m_index');
+
+                window.location.href = "index.php";
                 break;
         }
     }
@@ -382,7 +436,7 @@ class Game2 {
         this.targetX1 = this.target.offset().left;
         this.targetX2 = this.target.offset().left + this.target.width()/2;
         this.targetY1 = this.target.offset().top - this.ball.height()*4/5;
-        this.targetY2 = this.target.offset().top;        
+        this.targetY2 = this.target.offset().top + this.ball.height()/2;        
         this.ballTime = '';
         this.t = 0;
         this.ctrl = false;
@@ -396,7 +450,7 @@ class Game2 {
             emove = 'touchmove';
 
         this.r = 0.5; 
-        this.del = 1;//阻力
+        this.del = 0.5;//阻力
         this.fps = 20; //fps
     
         // o.ball
@@ -687,9 +741,10 @@ class Game4 {
     SushiGo() {
         this.itemboxX-=this.speed;
         if(this.itemboxX <= this.itemboxMin){
-            var random = Math.round(Math.random()*6)+1;
+            var random = Math.round(Math.random()*7)+1;
             if(random==4 || random==6) random=1;
-            else if(random==5 || random==7) random=3;
+            else if(random==5) random=3;
+            else if(random==7 || random==8) random=2;
             this.itembox.find('.item').first().attr('class','item goal_'+random);
             this.itembox.find('.item').last().after(this.itembox.find('.item').first());
             this.itemboxX = this.itemboxOrg;
@@ -744,10 +799,10 @@ class Game5 {
         this.wrp = $('.bg');
         this.ball = $('.ball');
         this.target = $('.gamebox');
-        this.targetX1 = this.target.offset().left;
+        this.targetX1 = this.target.offset().left - this.target.width()/5;
         this.targetX2 = this.target.offset().left + this.target.width()*4/5;
-        this.targetY1 = this.target.offset().top - this.ball.height()*2/3;
-        this.targetY2 = this.target.offset().top + this.target.height()/2;        
+        this.targetY1 = this.target.offset().top - this.ball.height()*4/5;
+        this.targetY2 = this.target.offset().top + this.target.height()*2/3;        
         this.ballTime = '';
         this.t = 0;
         this.ctrl = false;
@@ -761,7 +816,7 @@ class Game5 {
             emove = 'touchmove';
 
         this.r = 0.5; 
-        this.del = 1;//阻力
+        this.del = 0.5;//阻力
         this.fps = 20; //fps
     
         // o.ball
