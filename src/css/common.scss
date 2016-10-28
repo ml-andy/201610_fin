@@ -173,8 +173,10 @@ body{
                 @include flt;
                 z-index: 8;
                 background-color: rgba(0,0,0,0.8);
+                overflow-y: scroll;
+                -webkit-overflow-scrolling: touch;
                 .main{
-                    @include amvw(585,726);
+                    @include altvw(585,726,26,178);
                     margin-top: getVW(-26);
                     background-repeat: no-repeat;
                     background-size: contain;
@@ -190,7 +192,7 @@ body{
                     }
                 }
                 .waterchild{
-                    @include albvw(288,268,50,0,-144);
+                    @include altvw(288,268,50,868,-144);
                     left: 50%;
                     background-image: url(../images/game_popup_waterchild.png);
                     background-repeat: no-repeat;

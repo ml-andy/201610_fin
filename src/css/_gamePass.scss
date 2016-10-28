@@ -29,8 +29,8 @@
                         @include r;
                         @include fontvw(25,34,#414141,bolder);
                         box-sizing: border-box;
-                        padding-left: getVW(25);
-                        padding-right: getVW(25);
+                        padding-left: getVW(15);
+                        padding-right: getVW(15);
                         padding-bottom: getVW(25);
                         margin-bottom: getVW(25);
                         border-bottom: 1px solid #3d7e80;
