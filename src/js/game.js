@@ -143,7 +143,7 @@ class Game {
 	}
 	ready() {
 		this.page = $('.page');
-
+        this.page.append('<div class="footer">使用手機瀏覽，建議使用ios8.4以上(含)，Android4.3以上(含)；Chrome及Safari以獲得最佳瀏覽效果</div>');
 		switch (this.page.attr('class').split('page game ')[1]) {
 			case 'game_list':
 				this.game_list = new Game_list();

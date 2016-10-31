@@ -205,6 +205,12 @@ body{
                 @include r;
                 min-height: 100%;
             }
+            .footer{
+                @include alb(100%,auto);
+                @include fontvw(12,24,#000000);
+                text-align: center;
+                margin-bottom: getVW(10);
+            }
         }
         .com_title{
             @include rvw(100,493);

@@ -45,6 +45,30 @@
                 background-size: contain;
                 background-position: center center;
                 z-index: 1;
+                &:before{
+                    content:"";
+                    @include altvw(440,205,-40,-20);
+                    pointer-events: none;
+                    box-sizing: border-box;
+                    border: 2px solid #00fdff;
+                    opacity: 0;
+                    animation: gameboxAni 3s 0s infinite linear;
+                    animation-fill-mode: forwards;
+                }
+                @keyframes gameboxAni {
+                    0% {
+                        opacity: 0;
+                    }
+                    25% {
+                        opacity: 1;
+                    }
+                    50% {
+                        opacity: 0;
+                    }
+                    100% {
+                        opacity: 0;
+                    }
+                }
             }
             .ball{
                 @include albvw(257,343,186,35);

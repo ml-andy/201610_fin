@@ -56,8 +56,22 @@
                     }
                     &.goal_2{
                         background-image: url(../images/game4_item2.png);
+                        &:before{
+                            content:"+1";
+                            @include alt;
+                            @include fontvw(48,48,#19f519,bolder);
+                            height: getVW(48);
+                            text-align: center;
+                            transition: 0.3s;
+                            opacity: 0;
+                            transform: translateY(200%);
+                        }
                         &.touch{
                             background-image: none;
+                            &:before{
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
                         }
                     }
                     &.goal_3{
