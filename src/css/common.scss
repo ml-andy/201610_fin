@@ -25,7 +25,7 @@ body{
 .header{
     @include alt;
     height: getVW(100);
-    z-index: 9;
+    z-index: 10;
     .logo{
         @include altvw(126,100);
         background-image: url(../images/logo.png);
@@ -60,7 +60,7 @@ body{
     z-index: 0;
     opacity: 0;
     &.on{
-        z-index: 8;
+        z-index: 9;
         opacity: 1;
     }
     .menua_box{
@@ -170,11 +170,11 @@ body{
         &.game{
             height: 100%;
             .info{
-                @include flt;
+                @include alt;
                 z-index: 8;
                 background-color: rgba(0,0,0,0.8);
-                overflow-y: scroll;
-                -webkit-overflow-scrolling: touch;
+                // overflow-y: scroll;
+                // -webkit-overflow-scrolling: touch;
                 .main{
                     @include altvw(585,726,26,178);
                     margin-top: getVW(-26);
@@ -210,6 +210,13 @@ body{
                 @include fontvw(12,24,#000000);
                 text-align: center;
                 margin-bottom: getVW(10);
+                z-index: 2;
+            }
+            &.game_list{
+                margin-bottom: getVW(48);
+                .footer{
+                    bottom: getVW(-48);
+                }
             }
         }
         .com_title{

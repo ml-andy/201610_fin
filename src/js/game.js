@@ -89,8 +89,8 @@
             case 'm7':
                 if (this.menubtn.hasClass('on')) setTrackButton('btn_m_game_menu');
                 else setTrackButton('btn_m_game');
-                //window.location.href = "game_list.php";
-                alert('遊戲將於11/2正式上線');
+                window.location.href = "game_list.php";
+                // alert('遊戲將於11/2正式上線');
                 break;
             case 'm8':
                 if (this.menubtn.hasClass('on')) setTrackButton('btn_m_go_menu');
@@ -128,7 +128,7 @@ class Game_list {
 		});	
 		this.gobtn = this.page.find('.gobtn');
 		this.gobtn.on('click',function(e){
-            window.location.href="game"+ $(e.currentTarget).parent().attr('num') +'.html';
+            window.location.href="game"+ $(e.currentTarget).parent().attr('num') +'.php';
 		}.bind(this));
 	}
 	
@@ -144,6 +144,11 @@ class Game {
 	ready() {
 		this.page = $('.page');
         this.page.append('<div class="footer">使用手機瀏覽，建議使用ios8.4以上(含)，Android4.3以上(含)；Chrome及Safari以獲得最佳瀏覽效果</div>');
+        if($('.info').length !=0){
+            var _h = this.page.find('.info').find('.waterchild').offset().top + this.page.find('.info').find('.waterchild').height();
+            $('.wrapper').css('height',_h);
+            $('.info').css('height',_h);
+        }
 		switch (this.page.attr('class').split('page game ')[1]) {
 			case 'game_list':
 				this.game_list = new Game_list();
@@ -185,7 +190,7 @@ class GameModel {
         this.back = this.failPopup.find('.back');
         
         this.back.on('click',function(){
-            window.location.href="game_list.html";
+            window.location.href="game_list.php";
         }.bind(this));
         
     }
@@ -279,6 +284,7 @@ class Game1 {
         this.carL.y= -295;
     }
     Game1Start(){
+        $('.wrapper').attr('style','');
         this.passCar = 0;
         this.nowendTime = this.endTimeout;
         this.GameModel.timer.html(this.nowendTime);
@@ -478,6 +484,8 @@ class Game2 {
         //y
         if(e.pageY< $(window).height()/2){
             // this.ballinit();
+            $('.wrapper').off('touchmove',this.o_ball_move.bind(this));
+            if(this.ctrl) this.ballEnd();
             return;
         }
         this.ballbottom = this.wrp.height() - e.pageY - this.ball.height() / 2;
@@ -541,6 +549,7 @@ class Game2 {
         if(this.start) e.preventDefault();
     }
     GameStart(){
+        $('.wrapper').attr('style','');
         this.nowendTime = this.endTimeout;
         this.GameModel.timer.html(this.nowendTime);
         this.GameModel.info.fadeOut();
@@ -643,6 +652,7 @@ class Game3 {
         }        
     }
     GameStart(){
+        $('.wrapper').attr('style','');
         this.nowendTime = this.endTimeout;
         this.GameModel.timer.html(this.nowendTime);
         this.GameModel.info.fadeOut();
@@ -719,6 +729,7 @@ class Game4 {
         }.bind(this));
     }
     GameStart(){
+        $('.wrapper').attr('style','');
         this.nowendTime = this.endTimeout;
         this.GameModel.timer.html(this.nowendTime);
         this.GameModel.info.fadeOut();
@@ -844,6 +855,8 @@ class Game5 {
         //y
         if(e.pageY< $(window).height()/2){
             // this.ballinit();
+            $('.wrapper').off('touchmove',this.o_ball_move.bind(this));
+            if(this.ctrl) this.ballEnd();
             return;
         }
         this.ballbottom = this.wrp.height() - e.pageY - this.ball.height() / 2;
@@ -869,7 +882,7 @@ class Game5 {
         this.s2 = this.v0 * this.t2 * -1 * this.del;
         this.a2 = Math.sqrt(this.s2 * 2);
         var goal = this.ballbottom + this.s2;
-        if(goal > this.wrp.height() + this.ball.height()) goal = this.wrp.height() + this.ball.height();
+        if(goal > this.wrp.height()) goal = this.wrp.height();
         else if(goal < 0) goal = 0;
 
         //x
@@ -883,7 +896,7 @@ class Game5 {
         var goalx = this.ballmleft + this.s2x;
         if(goalx > this.wrp.width()/2) goalx = this.wrp.width()/2;
         else if(goalx < this.wrp.width()/2*-1) goalx = this.wrp.width()/2*-1;
-        this.ball.animate({'bottom':goal,'margin-left':goalx*-1,'width':'30vw'},this.t2 * this.fps,'easeOutQuart',function(){this.checkball();}.bind(this));
+        this.ball.animate({'bottom':goal,'margin-left':goalx*-1,'width':'25vw'},this.t2 * this.fps,'easeOutQuart',function(){this.checkball();}.bind(this));
         
     }
     checkball(){
@@ -907,6 +920,7 @@ class Game5 {
         if(this.start) e.preventDefault();
     }
     GameStart(){
+        $('.wrapper').attr('style','');
         this.nowendTime = this.endTimeout;
         this.GameModel.timer.html(this.nowendTime);
         this.GameModel.info.fadeOut();
