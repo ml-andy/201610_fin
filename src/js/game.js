@@ -113,8 +113,9 @@
 class Game_list {
 	constructor() {
 		console.log('game LIST');
+        setTrackPV('pv_m_select_3');
 		this.page = $('.page.game_list');
-		this.banner_swiper = new Swiper('.swiper-container', {
+		var banner_swiper = new Swiper('.swiper-container', {
 		  	speed:600,	  
 		  	wrapperClass: 'swiper-wrapper',
 		  	slideClass: 'swiper-slide',
@@ -122,16 +123,34 @@ class Game_list {
 			prevButton:$('.prev'),
 		    slidesPerView: 1,
 		    spaceBetween: 0,
+            slideActiveClass: 'nowShow',
 		    loop: true,
 		    autoplay:6000,
-		    autoplayDisableOnInteraction:false
+		    autoplayDisableOnInteraction:false,
+            onSlideChangeEnd: function(){
+                if(banner_swiper){
+                    var _num = $('.nowShow').attr('num');
+                    if(_num == 3) setTrackPV('pv_m_select_1');
+                    else if(_num == 4) setTrackPV('pv_m_select_2');
+                    else if(_num == 1) setTrackPV('pv_m_select_3');
+                    else if(_num == 5) setTrackPV('pv_m_select_4');
+                    else if(_num == 2) setTrackPV('pv_m_select_5');
+                } 
+            }
 		});	
 		this.gobtn = this.page.find('.gobtn');
 		this.gobtn.on('click',function(e){
-            window.location.href="game"+ $(e.currentTarget).parent().attr('num') +'.php';
+            var _num = $(e.currentTarget).parent().attr('num');
+
+            if(_num == 3) setTrackButton('btn_m_game_go_1');
+            else if(_num == 4) setTrackButton('btn_m_game_go_2');
+            else if(_num == 1) setTrackButton('btn_m_game_go_3');
+            else if(_num == 5) setTrackButton('btn_m_game_go_4');
+            else if(_num == 2) setTrackButton('btn_m_game_go_5');
+
+            window.location.href="game"+ _num +'.php';
 		}.bind(this));
 	}
-	
 }
 class Game {
 	constructor() {
@@ -190,6 +209,7 @@ class GameModel {
         this.back = this.failPopup.find('.back');
         
         this.back.on('click',function(){
+            setTrackButton('btn_m_failure_game');
             window.location.href="game_list.php";
         }.bind(this));
         
@@ -199,9 +219,11 @@ class Game1 {
 	constructor() {
         this.GameModel = new GameModel();
         this.GameModel.startbtn.on('click',function(){
+            setTrackButton('btn_m_legend_go_3');
             this.Game1Start();
         }.bind(this));
         this.GameModel.again.on('click',function(){
+            setTrackButton('btn_m_failure_go');
             this.GameModel.failPopup.fadeOut();
             this.Game1Start();
         }.bind(this));
@@ -217,6 +239,7 @@ class Game1 {
 	}
     ready() {
         console.log('game1 init');
+        setTrackPV('pv_m_legend_3');
         this.fps = 30;
         this.endTimeout = 30;
         this.nowendTime = this.endTimeout;
@@ -284,6 +307,7 @@ class Game1 {
         this.carL.y= -295;
     }
     Game1Start(){
+        setTrackPV('pv_m_game_3');
         $('.wrapper').attr('style','');
         this.passCar = 0;
         this.nowendTime = this.endTimeout;
@@ -307,6 +331,7 @@ class Game1 {
         if(this.passCar >= this.successCarNum) gamePasses();
         else{
             console.log('Game over');
+            setTrackPV('pv_m_failure');
             this.GameModel.failPopup.fadeIn();
         }
     }
@@ -419,9 +444,11 @@ class Game2 {
 	constructor() {
         this.GameModel = new GameModel();
 		this.GameModel.startbtn.on('click',function(){
+            setTrackButton('btn_m_legend_go_5');
             this.GameStart();
         }.bind(this));
         this.GameModel.again.on('click',function(){
+            setTrackButton('btn_m_failure_go');
             this.GameModel.failPopup.fadeOut();
             this.GameStart();
         }.bind(this));
@@ -430,6 +457,7 @@ class Game2 {
 	}
     ready() {
         console.log('game2 init');
+        setTrackPV('pv_m_legend_5');
         this.endTimeout = 30;
         this.nowendTime = this.endTimeout;
         this.passNum = 0;
@@ -549,6 +577,7 @@ class Game2 {
         if(this.start) e.preventDefault();
     }
     GameStart(){
+        setTrackPV('pv_m_game_5');
         $('.wrapper').attr('style','');
         this.nowendTime = this.endTimeout;
         this.GameModel.timer.html(this.nowendTime);
@@ -567,6 +596,7 @@ class Game2 {
         if(this.passNum >= this.successCarNum) gamePasses();
         else{
             console.log('Game over');
+            setTrackPV('pv_m_failure');
             this.GameModel.failPopup.fadeIn();
         }
     }
@@ -584,9 +614,11 @@ class Game3 {
 	constructor() {
         this.GameModel = new GameModel();
 		this.GameModel.startbtn.on('click',function(){
+            setTrackButton('btn_m_legend_go_1');
             this.GameStart();
         }.bind(this));
         this.GameModel.again.on('click',function(){
+            setTrackButton('btn_m_failure_go');
             this.GameModel.failPopup.fadeOut();
             this.GameStart();
         }.bind(this));
@@ -595,6 +627,7 @@ class Game3 {
 	}
     ready() {
         console.log('game3 init');
+        setTrackPV('pv_m_legend_1');
         this.endTimeout = 30;
         this.nowendTime = this.endTimeout;
         this.passNum = 0;
@@ -652,6 +685,7 @@ class Game3 {
         }        
     }
     GameStart(){
+        setTrackPV('pv_m_game_1');
         $('.wrapper').attr('style','');
         this.nowendTime = this.endTimeout;
         this.GameModel.timer.html(this.nowendTime);
@@ -670,6 +704,7 @@ class Game3 {
         if(this.passNum >= this.successCarNum) gamePasses();
         else{
             console.log('Game over');
+            setTrackPV('pv_m_failure');
             this.GameModel.failPopup.fadeIn();
         }
     }
@@ -687,9 +722,11 @@ class Game4 {
 	constructor() {
         this.GameModel = new GameModel();
 		this.GameModel.startbtn.on('click',function(){
+            setTrackButton('btn_m_legend_go_2');
             this.GameStart();
         }.bind(this));
         this.GameModel.again.on('click',function(){
+            setTrackButton('btn_m_failure_go');
             this.GameModel.failPopup.fadeOut();
             this.GameStart();
         }.bind(this));
@@ -698,6 +735,7 @@ class Game4 {
 	}
     ready() {
         console.log('game4 init');
+        setTrackPV('pv_m_legend_2');
         this.endTimeout = 30;
         this.nowendTime = this.endTimeout;
         this.passNum = 0;
@@ -729,6 +767,7 @@ class Game4 {
         }.bind(this));
     }
     GameStart(){
+        setTrackPV('pv_m_game_2');
         $('.wrapper').attr('style','');
         this.nowendTime = this.endTimeout;
         this.GameModel.timer.html(this.nowendTime);
@@ -773,6 +812,7 @@ class Game4 {
         if(this.passNum >= this.successCarNum) gamePasses();
         else{
             console.log('Game over');
+            setTrackPV('pv_m_failure');
             this.GameModel.failPopup.fadeIn();
         }
     }
@@ -790,9 +830,11 @@ class Game5 {
 	constructor() {
         this.GameModel = new GameModel();
 		this.GameModel.startbtn.on('click',function(){
+            setTrackButton('btn_m_legend_go_4');
             this.GameStart();
         }.bind(this));
         this.GameModel.again.on('click',function(){
+            setTrackButton('btn_m_failure_go');
             this.GameModel.failPopup.fadeOut();
             this.GameStart();
         }.bind(this));
@@ -801,6 +843,7 @@ class Game5 {
 	}
     ready() {
         console.log('game5 init');
+        setTrackPV('pv_m_legend_4');
         this.endTimeout = 30;
         this.nowendTime = this.endTimeout;
         this.passNum = 0;
@@ -920,6 +963,7 @@ class Game5 {
         if(this.start) e.preventDefault();
     }
     GameStart(){
+        setTrackPV('pv_m_game_4');
         $('.wrapper').attr('style','');
         this.nowendTime = this.endTimeout;
         this.GameModel.timer.html(this.nowendTime);
@@ -938,6 +982,7 @@ class Game5 {
         if(this.passNum >= this.successCarNum) gamePasses();
         else{
             console.log('Game over');
+            setTrackPV('pv_m_failure');
             this.GameModel.failPopup.fadeIn();
         }
     }

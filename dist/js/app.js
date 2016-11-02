@@ -202,8 +202,8 @@ var HeaderModel = function () {
                 case 'm7':
                     if (this.menubtn.hasClass('on')) setTrackButton('btn_m_game_menu');
                     else setTrackButton('btn_m_game');
-                    //window.location.href = "game_list.php";
-                    alert('遊戲將於11/2正式上線');
+                    window.location.href = "game_list.php";
+                    //alert('遊戲將於11/2正式上線');
                     break;
                 case 'm8':
                     if (this.menubtn.hasClass('on')) setTrackButton('btn_m_go_menu');
@@ -478,13 +478,33 @@ var GamePass = function GamePass() {
     else this.gameWord = '研究指出在口渴時，大腦處理口渴訊息佔用了大部分資源，在補水後就能得到釋放，上班族進而加快工作效率唷！';
     this.word.html(this.gameWord);
 
+    //ga
+    var _num = this.gameNum;
+    if(_num == 3) setTrackPV('pv_m_success_1');
+    else if(_num == 4) setTrackPV('pv_m_success_2');
+    else if(_num == 1) setTrackPV('pv_m_success_3');
+    else if(_num == 5) setTrackPV('pv_m_success_4');
+    else if(_num == 2) setTrackPV('pv_m_success_5');
+
     this.backindex = this.page.find('.backindex');
     this.backgamelist = this.page.find('.backgamelist');
     this.backindex.on('click',function(){
+        var _num = this.gameNum;
+        if(_num == 3) setTrackButton('pv_m_index_success_1');
+        else if(_num == 4) setTrackButton('pv_m_index_success_2');
+        else if(_num == 1) setTrackButton('pv_m_index_success_3');
+        else if(_num == 5) setTrackButton('pv_m_index_success_4');
+        else if(_num == 2) setTrackButton('pv_m_index_success_5');
         this.HeaderModel.menuaClick('m9');
     }.bind(this));
 
     this.backgamelist.on('click',function(){
+        var _num = this.gameNum;
+        if(_num == 3) setTrackButton('pv_m_game_success_1');
+        else if(_num == 4) setTrackButton('pv_m_game_success_2');
+        else if(_num == 1) setTrackButton('pv_m_game_success_3');
+        else if(_num == 5) setTrackButton('pv_m_game_success_4');
+        else if(_num == 2) setTrackButton('pv_m_game_success_5');
         this.HeaderModel.menuaClick('m7');
     }.bind(this));
     
