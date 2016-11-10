@@ -753,6 +753,7 @@ class Game4 {
         this.iconTimeout='';
 
         this.item.on('touchstart',function(e){
+            if($(e.currentTarget).hasClass('touch')) return;
             $(e.currentTarget).addClass('touch');
             if($(e.currentTarget).hasClass('goal_2')){
                 this.passNum +=1;
