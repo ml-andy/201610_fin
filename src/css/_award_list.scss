@@ -190,13 +190,14 @@
                                         @include alt(1px,100%,30%);
                                         background-color: #414141;
                                         &:nth-child(1){
-                                            left: 18%;
+                                            left: 24%;
                                         }
                                         &:nth-child(2){
-                                            left: 50%;
+                                            left: 62%;
                                         }
                                         &:nth-child(3){
                                             left: 82%;
+                                            display: none;
                                         }
                                     }
                                 }
@@ -215,12 +216,13 @@
                                         border-bottom: 0;
                                     }
                                     .item{
-                                        @include r(32%);
+                                        @include r(38%);
                                         &:nth-child(1){
-                                            @include r(18%);
+                                            @include r(24%);
                                         }
                                         &:nth-child(4){
                                             @include r(18%);
+                                            display: none;
                                         }
                                     }
                                 }
