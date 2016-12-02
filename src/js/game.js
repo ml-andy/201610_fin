@@ -214,6 +214,11 @@ class GameModel {
         }.bind(this));
         
     }
+    AppierTrack(){
+        console.log('AppierTrack');
+        Appier.appierTrack('Kp61CrC93dhfN24',{unique_key:'true',convertrule:'true'},'1UGfQf0j71WmU68'); 
+        window.APPIER_RETARGET.send({'t':'type_conversion','content':'submit'});
+    }
 }
 class Game1 {
 	constructor() {
@@ -332,6 +337,7 @@ class Game1 {
         else{
             console.log('Game over');
             setTrackPV('pv_m_failure');
+            this.GameModel.AppierTrack();
             this.GameModel.failPopup.fadeIn();
         }
     }
@@ -597,6 +603,7 @@ class Game2 {
         else{
             console.log('Game over');
             setTrackPV('pv_m_failure');
+            this.GameModel.AppierTrack();
             this.GameModel.failPopup.fadeIn();
         }
     }
@@ -705,6 +712,7 @@ class Game3 {
         else{
             console.log('Game over');
             setTrackPV('pv_m_failure');
+            this.GameModel.AppierTrack();
             this.GameModel.failPopup.fadeIn();
         }
     }
@@ -814,6 +822,7 @@ class Game4 {
         else{
             console.log('Game over');
             setTrackPV('pv_m_failure');
+            this.GameModel.AppierTrack();
             this.GameModel.failPopup.fadeIn();
         }
     }
@@ -984,6 +993,7 @@ class Game5 {
         else{
             console.log('Game over');
             setTrackPV('pv_m_failure');
+            this.GameModel.AppierTrack();
             this.GameModel.failPopup.fadeIn();
         }
     }

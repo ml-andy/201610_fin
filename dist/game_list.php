@@ -59,6 +59,8 @@ if (typeof window.APPIER_RETARGET == 'undefined') {
         });
      })(window, document, 'JiOf', 'heysong-fin.com.tw');
 }
+Appier.appierTrack('fGtNAWm2vW87AE2',{unique_key:'true',convertrule:'true'},'1UGfQf0j71WmU68'); 
+window.APPIER_RETARGET.send({'t':'type_process','content':'list'});
 })();
 </script>
 
